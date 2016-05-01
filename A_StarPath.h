@@ -19,11 +19,11 @@ public:
 
     bool setStartPoint(Position startPos);
     bool setEndPoint(Position endPos);
-    
+
     virtual void path();
-    
+
 private:
-    Field m_PlayGround;
+    const Field m_PlayGround; //the Playground stays unmodified during the life of this class
     Position m_Start;
     Position m_End;
 };

@@ -6,9 +6,8 @@ class PathInterface
 public:
     PathInterface();
     virtual ~PathInterface();
-    
-    virtual void path() = 0;
 
+    virtual void path() = 0;
 };
 
 #endif // PATHINTERFACE_H

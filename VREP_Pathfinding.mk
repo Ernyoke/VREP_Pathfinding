@@ -5,8 +5,8 @@
 ## Debug
 ProjectName            :=VREP_Pathfinding
 ConfigurationName      :=Debug
-WorkspacePath          := "/home/ervin/CProjects/codelite_workspace"
-ProjectPath            := "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding"
+WorkspacePath          :=/home/ervin/CProjects/codelite_workspace/codelite_workspace
+ProjectPath            :=/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding
 IntermediateDirectory  :=./Debug
 OutDir                 := $(IntermediateDirectory)
 CurrentFileName        :=
@@ -14,7 +14,7 @@ CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=ervin
 Date                   :=01/05/16
-CodeLitePath           :="/home/ervin/.codelite"
+CodeLitePath           :=/home/ervin/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
 ObjectSuffix           :=.o

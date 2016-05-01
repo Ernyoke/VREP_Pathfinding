@@ -7,16 +7,16 @@
 class NoPathException
 {
 public:
-    explicit NoPathException (const std::string message);
-    virtual ~NoPathException ();
+    explicit NoPathException(const std::string message);
+    virtual ~NoPathException();
 
-    virtual const char* what() const throw () {
-        return m_Msg.c_str ();
+    virtual const char* what() const throw()
+    {
+        return m_Msg.c_str();
     }
-    
+
 private:
     std::string m_Msg;
-
 };
 
 #endif // NOPATHEXCEPTION_H

@@ -7,4 +7,3 @@ PathInterface::PathInterface()
 PathInterface::~PathInterface()
 {
 }
-

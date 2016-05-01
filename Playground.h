@@ -4,30 +4,37 @@
 #include <boost/numeric/ublas/matrix.hpp>
 #include "Position.h"
 
-enum STATE {
-    WALL = 1,
-    TOUCHED = 2,
-    EMPTY = 0,
-    START = 3,
-    END = 4
+enum STATE { WALL = 1, TOUCHED = 2, EMPTY = 0, START = 3, END = 4 };
+
+class Dimension
+{
+public:
+    Dimension(unsigned int width, unsigned int height);
+    ~Dimension();
+
+    unsigned int area() const;
+
+private:
+    unsigned int m_Width, m_Height;
 };
 
 class Playground
 {
 
 public:
+    Playground();
+    virtual ~Playground();
 
-    Playground ();
-    virtual ~Playground ();
-    
     void readFromFile(const std::string file);
     void writeToFile(const std::string file) const;
 
-    bool touch (const Position position);
-    bool isWall (const Position position) const;
-    bool isEmpty (const Position position) const;
-    bool isTouched (const Position position) const;
-    
+    bool touch(const Position position);
+    bool isWall(const Position position) const;
+    bool isEmpty(const Position position) const;
+    bool isTouched(const Position position) const;
+
+    Dimension dimension() const;
+
 private:
     boost::numeric::ublas::matrix<STATE> m_Map;
 };
