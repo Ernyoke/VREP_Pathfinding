@@ -2,8 +2,6 @@
 #include "OutOfBoundException.h"
 #include "NoPathException.h"
 
-#include <iostream>
-
 static const Direction dir[] = {
     Direction(0, -1), // N
     Direction(-1, 0), // W
@@ -15,7 +13,7 @@ static const Direction dir[] = {
     Direction(-1, 1) // NE
 };
 
-A_StarPath::A_StarPath(const Field playGround)
+A_StarPath::A_StarPath(const Field& playGround)
     : m_PlayGround{ playGround }
     , m_Start{ 0, 0 }
     , m_End{ 0, 0 }
@@ -26,7 +24,7 @@ A_StarPath::~A_StarPath()
 {
 }
 
-bool A_StarPath::setStartPoint(Position startPos)
+bool A_StarPath::setStartPoint(const Position& startPos)
 {
     bool result = false;
     if(m_PlayGround->isEmpty(startPos)) {
@@ -36,7 +34,7 @@ bool A_StarPath::setStartPoint(Position startPos)
     return result;
 }
 
-bool A_StarPath::setEndPoint(Position endPos)
+bool A_StarPath::setEndPoint(const Position& endPos)
 {
     bool result = false;
     if(m_PlayGround->isEmpty(endPos)) {
@@ -46,7 +44,7 @@ bool A_StarPath::setEndPoint(Position endPos)
     return result;
 }
 
-void A_StarPath::path()
+CoordinateList_sptr A_StarPath::path()
 {
     if(!m_PlayGround->dimension().area()) {
         throw new NoPathException("Area of field is 0!");
@@ -82,12 +80,15 @@ void A_StarPath::path()
         current = posList.top();
         posList.pop();
     }
-
+    
     const HistoricalPosition* pathPos = current.getPrevoiusPosition();
-    std::cout << current.X() << " " << current.Y() << std::endl;
+    CoordinateList_sptr finalPath(new CoordinateList());
+    finalPath->push_front(dynamic_cast<const Position&>(current));
     while(pathPos->getPrevoiusPosition() != nullptr) {
-        std::cout << pathPos->X() << " " << pathPos->Y() << std::endl;
+        finalPath->push_front(dynamic_cast<const Position&>(*pathPos));
         pathPos = pathPos->getPrevoiusPosition();
     }
-    std::cout << pathPos->X() << " " << pathPos->Y() << std::endl;
+    finalPath->push_front(dynamic_cast<const Position&>(*pathPos));
+    
+    return finalPath;
 }

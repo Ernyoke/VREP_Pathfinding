@@ -28,34 +28,30 @@ Playground::~Playground()
     // empty destructor
 }
 
-void Playground::readFromFile(const std::string filename)
+void Playground::readFromFile(std::ifstream& stream)
 {
-    std::ifstream file;
-    file.open(filename.c_str());
-
-    if(file.is_open()) {
-        size_t x, y;
+    if(stream.is_open()) {
+        unsigned int x, y;
         unsigned int val;
-        file >> x;
-        file >> y;
+        stream >> x;
+        stream >> y;
         m_Map.resize(x, y);
         for(size_t i = 0; i < x; ++i) {
             for(size_t j = 0; j < y; ++j) {
-                file >> val;
+                stream >> val;
                 m_Map(i, j) = static_cast<STATE>(val);
             }
         }
-        file.close();
     }
 }
 
-void Playground::writeToFile(const std::string filename) const
+void Playground::writeToFile(std::ostream& stream) const
 {
     for(size_t i = 0; i < m_Map.size1(); ++i) {
         for(size_t j = 0; j < m_Map.size2(); ++j) {
-            std::cout << m_Map(i, j) << " ";
+            stream << m_Map(i, j) << " ";
         }
-        std::cout << std::endl;
+        stream << std::endl;
     }
 }
 
@@ -98,5 +94,5 @@ bool Playground::isTouched(const Position position) const
 
 Dimension Playground::dimension() const
 {
-    return Dimension{ m_Map.size1(), m_Map.size2() };
+    return Dimension{ static_cast<unsigned int>(m_Map.size1()), static_cast<unsigned int>(m_Map.size2()) };
 }

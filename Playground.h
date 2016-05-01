@@ -25,8 +25,8 @@ public:
     Playground();
     virtual ~Playground();
 
-    void readFromFile(const std::string file);
-    void writeToFile(const std::string file) const;
+    void readFromFile(std::ifstream& stream);
+    void writeToFile(std::ostream& stream) const;
 
     bool touch(const Position position);
     bool isWall(const Position position) const;
