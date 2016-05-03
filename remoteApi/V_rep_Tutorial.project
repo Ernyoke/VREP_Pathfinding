@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<CodeLite_Project Name="VREP_Pathfinding" InternalType="Console">
+<CodeLite_Project Name="V_rep_Tutorial" InternalType="Console">
   <Plugins>
-    <Plugin Name="qmake">
-      <![CDATA[00010001N0005Debug000000000000]]>
-    </Plugin>
     <Plugin Name="CMakePlugin">
       <![CDATA[[{
   "name": "Debug",
@@ -16,36 +13,18 @@
   "parentProject": ""
  }]]]>
     </Plugin>
+    <Plugin Name="qmake">
+      <![CDATA[00010001N0005Debug000000000000]]>
+    </Plugin>
   </Plugins>
   <Description/>
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
-    <File Name="Playground.h"/>
-    <File Name="Playground.cpp"/>
-    <File Name="PathInterface.h"/>
-    <File Name="PathInterface.cpp"/>
-    <File Name="A_StarPath.h"/>
-    <File Name="A_StarPath.cpp"/>
-    <File Name="Position.h"/>
-    <File Name="Position.cpp"/>
-    <File Name="OutOfBoundException.h"/>
-    <File Name="OutOfBoundException.cpp"/>
-    <File Name="HistoricalPosition.h"/>
-    <File Name="HistoricalPosition.cpp"/>
-    <File Name="NoPathException.h"/>
-    <File Name="NoPathException.cpp"/>
-    <VirtualDirectory Name="VREP">
-      <File Name="remoteApi/extApi.c"/>
-      <File Name="remoteApi/extApi.h"/>
-      <File Name="remoteApi/extApiPlatform.c"/>
-      <File Name="remoteApi/extApiPlatform.h"/>
-    </VirtualDirectory>
-    <VirtualDirectory Name="input">
-      <File Name="input.txt"/>
-    </VirtualDirectory>
-    <File Name="VRepApi.h"/>
-    <File Name="VRepApi.cpp"/>
+    <File Name="extApi.c"/>
+    <File Name="extApi.h"/>
+    <File Name="extApiPlatform.c"/>
+    <File Name="extApiPlatform.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
@@ -58,8 +37,7 @@
       <ResourceCompiler Options=""/>
     </GlobalSettings>
     <Configuration Name="Debug" CompilerType="GCC" DebuggerType="GNU gdb debugger" Type="Executable" BuildCmpWithGlobalSettings="append" BuildLnkWithGlobalSettings="append" BuildResWithGlobalSettings="append">
-      <Compiler Options="-g;-O0;-std=c++14;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
-        <IncludePath Value="."/>
+      <Compiler Options="-g;-O0;-Wall" C_Options="-g;-O0;-Wall" Assembler="" Required="yes" PreCompiledHeader="" PCHInCommandLine="no" PCHFlags="" PCHFlagsPolicy="0">
         <Preprocessor Value="NON_MATLAB_PARSING"/>
         <Preprocessor Value="MAX_EXT_API_CONNECTIONS=255"/>
       </Compiler>
@@ -68,11 +46,10 @@
       </Linker>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Debug" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
-      <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>
-      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="no">
+      <Debugger IsRemote="no" RemoteHostName="" RemoteHostPort="" DebuggerPath="" IsExtended="yes">
         <DebuggerSearchPaths/>
         <PostConnectCommands/>
         <StartupCommands/>
@@ -108,7 +85,6 @@
       <Linker Options="" Required="yes"/>
       <ResourceCompiler Options="" Required="no"/>
       <General OutputFile="$(IntermediateDirectory)/$(ProjectName)" IntermediateDirectory="./Release" Command="./$(ProjectName)" CommandArguments="" UseSeparateDebugArgs="no" DebugArguments="" WorkingDirectory="$(IntermediateDirectory)" PauseExecWhenProcTerminates="yes" IsGUIProgram="no" IsEnabled="yes"/>
-      <BuildSystem Name="Default"/>
       <Environment EnvVarSetName="&lt;Use Defaults&gt;" DbgSetName="&lt;Use Defaults&gt;">
         <![CDATA[]]>
       </Environment>

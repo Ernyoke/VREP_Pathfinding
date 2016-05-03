@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=ervin
-Date                   :=01/05/16
+Date                   :=03/05/16
 CodeLitePath           :=/home/ervin/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -28,7 +28,7 @@ LibraryPathSwitch      :=-L
 PreprocessorSwitch     :=-D
 SourceSwitch           :=-c 
 OutputFile             :=$(IntermediateDirectory)/$(ProjectName)
-Preprocessors          :=
+Preprocessors          :=$(PreprocessorSwitch)NON_MATLAB_PARSING $(PreprocessorSwitch)MAX_EXT_API_CONNECTIONS=255 
 ObjectSwitch           :=-o 
 ArchiveOutputSwitch    := 
 PreprocessOnlySwitch   :=-E
@@ -39,8 +39,8 @@ LinkOptions            :=
 IncludePath            :=  $(IncludeSwitch). $(IncludeSwitch). 
 IncludePCH             := 
 RcIncludePath          := 
-Libs                   := 
-ArLibs                 :=  
+Libs                   := $(LibrarySwitch)pthread 
+ArLibs                 :=  "pthread" 
 LibPath                := $(LibraryPathSwitch). 
 
 ##
@@ -60,7 +60,8 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Playground.cpp$(ObjectSuffix) $(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Position.cpp$(ObjectSuffix) $(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IntermediateDirectory)/HistoricalPosition.cpp$(ObjectSuffix) $(IntermediateDirectory)/NoPathException.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Playground.cpp$(ObjectSuffix) $(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Position.cpp$(ObjectSuffix) $(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IntermediateDirectory)/HistoricalPosition.cpp$(ObjectSuffix) $(IntermediateDirectory)/NoPathException.cpp$(ObjectSuffix) $(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) \
+	$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) 
 
 
 
@@ -154,6 +155,30 @@ $(IntermediateDirectory)/NoPathException.cpp$(DependSuffix): NoPathException.cpp
 
 $(IntermediateDirectory)/NoPathException.cpp$(PreprocessSuffix): NoPathException.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/NoPathException.cpp$(PreprocessSuffix) "NoPathException.cpp"
+
+$(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix): VRepApi.cpp $(IntermediateDirectory)/VRepApi.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/VRepApi.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/VRepApi.cpp$(DependSuffix): VRepApi.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/VRepApi.cpp$(DependSuffix) -MM "VRepApi.cpp"
+
+$(IntermediateDirectory)/VRepApi.cpp$(PreprocessSuffix): VRepApi.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/VRepApi.cpp$(PreprocessSuffix) "VRepApi.cpp"
+
+$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix): remoteApi/extApi.c $(IntermediateDirectory)/remoteApi_extApi.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/remoteApi/extApi.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/remoteApi_extApi.c$(DependSuffix): remoteApi/extApi.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) -MF$(IntermediateDirectory)/remoteApi_extApi.c$(DependSuffix) -MM "remoteApi/extApi.c"
+
+$(IntermediateDirectory)/remoteApi_extApi.c$(PreprocessSuffix): remoteApi/extApi.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/remoteApi_extApi.c$(PreprocessSuffix) "remoteApi/extApi.c"
+
+$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix): remoteApi/extApiPlatform.c $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(DependSuffix)
+	$(CC) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/remoteApi/extApiPlatform.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(DependSuffix): remoteApi/extApiPlatform.c
+	@$(CC) $(CFLAGS) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) -MF$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(DependSuffix) -MM "remoteApi/extApiPlatform.c"
+
+$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(PreprocessSuffix): remoteApi/extApiPlatform.c
+	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(PreprocessSuffix) "remoteApi/extApiPlatform.c"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
