@@ -16,7 +16,7 @@ void VRepApi::connect(const std::string& ipAddress,
                       const int timeOut,
                       const int commThreadCycleInMs)
 {
-    int clientID = simxStart(
+    simxInt clientID = simxStart(
         const_cast<simxChar*>(ipAddress.c_str()), port, isBlocking, doNotDiscoonect, timeOut, commThreadCycleInMs);
     if(clientID < 0) {
         throw new ConnectionErrorException("Could not connect to the server!", clientID);

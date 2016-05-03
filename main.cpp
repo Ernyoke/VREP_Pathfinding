@@ -5,9 +5,11 @@
 #include "Position.h"
 #include "A_StarPath.h"
 #include "NoPathException.h"
+#include "VRepApi.h"
 
 int main(int argc, char** argv)
 {
+    /*
     auto playGround = std::shared_ptr<Playground>(new Playground());
     std::ifstream inFile;
     inFile.open("input.txt");
@@ -26,5 +28,19 @@ int main(int argc, char** argv)
         std::cout << ex->what() << std::endl;
         delete ex;
     }
+    */
+
+    VRepApi vRepApi;
+    
+    std::cout << "Waiting for connection!" << std::endl;
+    
+    try {
+        vRepApi.connect("127.0.0.1", 19997, true, true, 2000);
+        std::cout << "Connected!" << std::endl;
+    } catch(ConnectionErrorException* ex) {
+        std::cout << ex->what() << std::endl;
+        delete ex;
+    }
+
     return 0;
 }

@@ -35,7 +35,7 @@
     <File Name="HistoricalPosition.cpp"/>
     <File Name="NoPathException.h"/>
     <File Name="NoPathException.cpp"/>
-    <VirtualDirectory Name="VREP">
+    <VirtualDirectory Name="remoteApi">
       <File Name="remoteApi/extApi.c"/>
       <File Name="remoteApi/extApi.h"/>
       <File Name="remoteApi/extApiPlatform.c"/>
