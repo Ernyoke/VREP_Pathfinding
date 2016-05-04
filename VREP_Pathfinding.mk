@@ -60,8 +60,8 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Playground.cpp$(ObjectSuffix) $(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Position.cpp$(ObjectSuffix) $(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IntermediateDirectory)/HistoricalPosition.cpp$(ObjectSuffix) $(IntermediateDirectory)/NoPathException.cpp$(ObjectSuffix) $(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) \
-	$(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Playground.cpp$(ObjectSuffix) $(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Position.cpp$(ObjectSuffix) $(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IntermediateDirectory)/HistoricalPosition.cpp$(ObjectSuffix) $(IntermediateDirectory)/NoPathException.cpp$(ObjectSuffix) $(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConnectionErrorException.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) 
 
 
 
@@ -163,6 +163,14 @@ $(IntermediateDirectory)/VRepApi.cpp$(DependSuffix): VRepApi.cpp
 
 $(IntermediateDirectory)/VRepApi.cpp$(PreprocessSuffix): VRepApi.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/VRepApi.cpp$(PreprocessSuffix) "VRepApi.cpp"
+
+$(IntermediateDirectory)/ConnectionErrorException.cpp$(ObjectSuffix): ConnectionErrorException.cpp $(IntermediateDirectory)/ConnectionErrorException.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/GIT/VREP_Pathfinding/ConnectionErrorException.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/ConnectionErrorException.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/ConnectionErrorException.cpp$(DependSuffix): ConnectionErrorException.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/ConnectionErrorException.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/ConnectionErrorException.cpp$(DependSuffix) -MM "ConnectionErrorException.cpp"
+
+$(IntermediateDirectory)/ConnectionErrorException.cpp$(PreprocessSuffix): ConnectionErrorException.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ConnectionErrorException.cpp$(PreprocessSuffix) "ConnectionErrorException.cpp"
 
 $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix): remoteApi/extApi.c $(IntermediateDirectory)/remoteApi_extApi.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/GIT/VREP_Pathfinding/remoteApi/extApi.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IncludePath)

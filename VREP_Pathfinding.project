@@ -46,6 +46,8 @@
     </VirtualDirectory>
     <File Name="VRepApi.h"/>
     <File Name="VRepApi.cpp"/>
+    <File Name="ConnectionErrorException.cpp"/>
+    <File Name="ConnectionErrorException.h"/>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>
