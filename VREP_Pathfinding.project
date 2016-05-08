@@ -65,7 +65,7 @@
         <Preprocessor Value="NON_MATLAB_PARSING"/>
         <Preprocessor Value="MAX_EXT_API_CONNECTIONS=255"/>
       </Compiler>
-      <Linker Options="" Required="yes">
+      <Linker Options="`pkg-config opencv --cflags --libs`" Required="yes">
         <Library Value="pthread"/>
       </Linker>
       <ResourceCompiler Options="" Required="no"/>

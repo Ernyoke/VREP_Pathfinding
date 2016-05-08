@@ -3,6 +3,8 @@
 
 #include <string>
 #include <exception>
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
 #include "ConnectionErrorException.h"
 
 extern "C" {
@@ -27,6 +29,7 @@ public:
                  const int commThreadCycleInMs = 5);
 
     HANDLE getObjectHandle(const std::string objectName) const;
+    cv::Mat getSensorImage(HANDLE handle, bool grayscale = false);
 };
 
 #endif // VREPAPI_H
