@@ -8,6 +8,7 @@
 #include "A_StarPath.h"
 #include "NoPathException.h"
 #include "VRepApi.h"
+#include "VisionSensor.h"
 
 int main(int argc, char** argv)
 {
@@ -37,11 +38,18 @@ int main(int argc, char** argv)
     std::cout << "Waiting for connection!" << std::endl;
     
     try {
-        vRepApi.connect("127.0.0.1", 19997, true, true, 2000);
+        vRepApi.connect("127.0.0.1", 19999, true, true, 2000);
         std::cout << "Connected!" << std::endl;
-        cv::Mat img = vRepApi.getSensorImage(vRepApi.getObjectHandle("mapSensor"), false);
+        VisionSensor *visionSensor = vRepApi.getVisionSensor("mapSensor");
+        visionSensor->initalize();
+        while(!visionSensor->initComplete());
+        cv::Mat img = visionSensor->image(VisionSensor::ImageType::GRAYSCALE);
         cv::imshow("opencvtest",img);
         cv::waitKey(0);
+        Position pos = vRepApi.getObjectPosition("dr12");
+        std::cout << pos.X() << " " << pos.Y() << std::endl;
+        delete visionSensor;
+        vRepApi.disconnect();
     } catch(ConnectionErrorException* ex) {
         std::cout << ex->what() << std::endl;
         delete ex;

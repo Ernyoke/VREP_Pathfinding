@@ -6,6 +6,9 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "ConnectionErrorException.h"
+#include "Sensor.h"
+#include "Position.h"
+#include "VisionSensor.h"
 
 extern "C" {
 #include "remoteApi/extApi.h"
@@ -27,9 +30,14 @@ public:
                  const bool doNotDiscoonect,
                  const int timeOut,
                  const int commThreadCycleInMs = 5);
+    void disconnect();
 
     HANDLE getObjectHandle(const std::string objectName) const;
-    cv::Mat getSensorImage(HANDLE handle, bool grayscale = false);
+    Position getObjectPosition(const std::string objectName) const;
+    VisionSensor* getVisionSensor(const std::string objName) const;
+    
+private:
+    void wait(const int sec) const;
 };
 
 #endif // VREPAPI_H

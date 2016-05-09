@@ -1,4 +1,5 @@
 #include "VRepApi.h"
+
 #include <iostream>
 #include <chrono>
 #include <thread>
@@ -28,6 +29,11 @@ void VRepApi::connect(const std::string& ipAddress,
     }
 }
 
+void VRepApi::disconnect()
+{
+    simxFinish(m_clientId);
+}
+
 HANDLE VRepApi::getObjectHandle(const std::string objectName) const
 {
     HANDLE handle = 0;
@@ -35,20 +41,21 @@ HANDLE VRepApi::getObjectHandle(const std::string objectName) const
     return handle;
 }
 
-cv::Mat VRepApi::getSensorImage(HANDLE handle, bool grayscale)
+VisionSensor* VRepApi::getVisionSensor(const std::string objName) const
 {
-    simxInt resolution[] = { 0, 0 };
-    simxUChar* imgData = NULL;
-    
-    imgData = new simxUChar[512 * 512];
-    
-    std::cout << simxGetVisionSensorImage(m_clientId, handle, resolution, &imgData, 1, simx_opmode_streaming);
-//    std::this_thread::sleep_for(std::chrono::seconds(3));
-    while(resolution[0] <= 0) {
-        simxGetVisionSensorImage(m_clientId, handle, resolution, &imgData, 1, simx_opmode_buffer);
-    }
-    
-    cv::Mat img(512, 512, CV_8UC1, imgData);
-    
-    return img;
+    HANDLE handle = getObjectHandle(objName);
+    SensorBuilder builder{ m_clientId, handle };
+    return VisionSensor::build(builder);
+}
+
+Position VRepApi::getObjectPosition(const std::string objName) const {
+    HANDLE handle = getObjectHandle(objName);
+    simxFloat *positionVec = new simxFloat[3];
+    std::cout << "Errorcode: " << simxGetObjectPosition(m_clientId, handle, -1, positionVec, simx_opmode_oneshot_wait) << std::endl;
+    std::cout << positionVec[0] << " " << positionVec[1] <<  " " << positionVec[2] << std::endl;
+    return Position {(positionVec[0] + 2.5) * 512 / 5, (positionVec[1] + 2.5) * 512 / 5};
+}
+
+void VRepApi::wait(const int sec) const {
+    std::this_thread::sleep_for(std::chrono::seconds(sec));
 }

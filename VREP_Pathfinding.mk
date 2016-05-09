@@ -13,7 +13,7 @@ CurrentFileName        :=
 CurrentFilePath        :=
 CurrentFileFullPath    :=
 User                   :=ervin
-Date                   :=08/05/16
+Date                   :=10/05/16
 CodeLitePath           :=/home/ervin/.codelite
 LinkerName             :=/usr/bin/g++
 SharedObjectLinkerName :=/usr/bin/g++ -shared -fPIC
@@ -61,7 +61,7 @@ AS       := /usr/bin/as
 ##
 CodeLiteDir:=/usr/share/codelite
 Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Playground.cpp$(ObjectSuffix) $(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Position.cpp$(ObjectSuffix) $(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IntermediateDirectory)/HistoricalPosition.cpp$(ObjectSuffix) $(IntermediateDirectory)/NoPathException.cpp$(ObjectSuffix) $(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConnectionErrorException.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) 
+	$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) $(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) 
 
 
 
@@ -171,6 +171,22 @@ $(IntermediateDirectory)/ConnectionErrorException.cpp$(DependSuffix): Connection
 
 $(IntermediateDirectory)/ConnectionErrorException.cpp$(PreprocessSuffix): ConnectionErrorException.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ConnectionErrorException.cpp$(PreprocessSuffix) "ConnectionErrorException.cpp"
+
+$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix): Sensor.cpp $(IntermediateDirectory)/Sensor.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Sensor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Sensor.cpp$(DependSuffix): Sensor.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Sensor.cpp$(DependSuffix) -MM "Sensor.cpp"
+
+$(IntermediateDirectory)/Sensor.cpp$(PreprocessSuffix): Sensor.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Sensor.cpp$(PreprocessSuffix) "Sensor.cpp"
+
+$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix): VisionSensor.cpp $(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/VisionSensor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix): VisionSensor.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix) -MM "VisionSensor.cpp"
+
+$(IntermediateDirectory)/VisionSensor.cpp$(PreprocessSuffix): VisionSensor.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/VisionSensor.cpp$(PreprocessSuffix) "VisionSensor.cpp"
 
 $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix): remoteApi/extApi.c $(IntermediateDirectory)/remoteApi_extApi.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/remoteApi/extApi.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IncludePath)
