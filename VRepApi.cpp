@@ -55,15 +55,6 @@ DR12_Robot* VRepApi::getDR12Unit(const std::string objName) const
     return DR12_Robot::build(builder);
 }
 
-//
-//Position VRepApi::getObjectPosition(const std::string objName) const {
-//    HANDLE handle = getObjectHandle(objName);
-//    simxFloat *positionVec = new simxFloat[3];
-//    std::cout << "Errorcode: " << simxGetObjectPosition(m_clientId, handle, -1, positionVec, simx_opmode_oneshot_wait) << std::endl;
-//    std::cout << positionVec[0] << " " << positionVec[1] <<  " " << positionVec[2] << std::endl;
-//    return Position {(positionVec[0] + 2.5) * 512 / 5, (positionVec[1] + 2.5) * 512 / 5};
-//}
-
 void VRepApi::wait(const int sec) const {
     std::this_thread::sleep_for(std::chrono::seconds(sec));
 }

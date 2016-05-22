@@ -11,6 +11,7 @@
 #include "VRepApi.h"
 #include "VisionSensor.h"
 #include "DR12_Robot.h"
+#include "Bridge.h"
 
 int main(int argc, char** argv)
 {
@@ -45,12 +46,13 @@ int main(int argc, char** argv)
         VisionSensor *visionSensor = vRepApi.getVisionSensor("mapSensor");
         visionSensor->initalize();
         while(!visionSensor->initComplete());
+        DR12_Robot *robot = vRepApi.getDR12Unit("dr12");
+        Position robotPos = Bridge::convertToPosition(robot->getGlobalPosition());
+        std::cout << "DR12 pos: " << robotPos.X() << " " << robotPos.Y() << std::endl;
         cv::Mat img = visionSensor->image(VisionSensor::ImageType::GRAYSCALE);
+        Bridge::coverMe(img, robotPos, 15);
         cv::imshow("opencvtest",img);
         cv::waitKey(0);
-        DR12_Robot *robot = vRepApi.getDR12Unit("dr12");
-        std::tuple<float, float, float> pos = robot->getGlobalPosition();
-        std::cout << "DR12 pos: " << std::get<0>(pos) << " " << std::get<1>(pos) <<  " " << std::get<2>(pos) << std::endl;
         delete visionSensor;
         delete robot;
         vRepApi.disconnect();

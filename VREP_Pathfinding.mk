@@ -60,8 +60,8 @@ AS       := /usr/bin/as
 ## User defined environment variables
 ##
 CodeLiteDir:=/usr/share/codelite
-Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) $(IntermediateDirectory)/Robot.cpp$(ObjectSuffix) $(IntermediateDirectory)/Object.cpp$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) $(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix) $(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) $(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) \
-	$(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IntermediateDirectory)/Playground.cpp$(ObjectSuffix) $(IntermediateDirectory)/HistoricalPosition.cpp$(ObjectSuffix) $(IntermediateDirectory)/NoPathException.cpp$(ObjectSuffix) $(IntermediateDirectory)/Position.cpp$(ObjectSuffix) $(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConnectionErrorException.cpp$(ObjectSuffix) 
+Objects0=$(IntermediateDirectory)/main.cpp$(ObjectSuffix) $(IntermediateDirectory)/Bridge.cpp$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(ObjectSuffix) $(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IntermediateDirectory)/Playground.cpp$(ObjectSuffix) $(IntermediateDirectory)/HistoricalPosition.cpp$(ObjectSuffix) $(IntermediateDirectory)/NoPathException.cpp$(ObjectSuffix) $(IntermediateDirectory)/Position.cpp$(ObjectSuffix) $(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) \
+	$(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IntermediateDirectory)/ConnectionErrorException.cpp$(ObjectSuffix) $(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IntermediateDirectory)/Object.cpp$(ObjectSuffix) $(IntermediateDirectory)/Robot.cpp$(ObjectSuffix) $(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) $(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) $(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix) 
 
 
 
@@ -100,37 +100,13 @@ $(IntermediateDirectory)/main.cpp$(DependSuffix): main.cpp
 $(IntermediateDirectory)/main.cpp$(PreprocessSuffix): main.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/main.cpp$(PreprocessSuffix) "main.cpp"
 
-$(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix): PathInterface.cpp $(IntermediateDirectory)/PathInterface.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/PathInterface.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/PathInterface.cpp$(DependSuffix): PathInterface.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/PathInterface.cpp$(DependSuffix) -MM "PathInterface.cpp"
+$(IntermediateDirectory)/Bridge.cpp$(ObjectSuffix): Bridge.cpp $(IntermediateDirectory)/Bridge.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Bridge.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Bridge.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Bridge.cpp$(DependSuffix): Bridge.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Bridge.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Bridge.cpp$(DependSuffix) -MM "Bridge.cpp"
 
-$(IntermediateDirectory)/PathInterface.cpp$(PreprocessSuffix): PathInterface.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/PathInterface.cpp$(PreprocessSuffix) "PathInterface.cpp"
-
-$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix): Sensor.cpp $(IntermediateDirectory)/Sensor.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Sensor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Sensor.cpp$(DependSuffix): Sensor.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Sensor.cpp$(DependSuffix) -MM "Sensor.cpp"
-
-$(IntermediateDirectory)/Sensor.cpp$(PreprocessSuffix): Sensor.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Sensor.cpp$(PreprocessSuffix) "Sensor.cpp"
-
-$(IntermediateDirectory)/Robot.cpp$(ObjectSuffix): Robot.cpp $(IntermediateDirectory)/Robot.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Robot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Robot.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Robot.cpp$(DependSuffix): Robot.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Robot.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Robot.cpp$(DependSuffix) -MM "Robot.cpp"
-
-$(IntermediateDirectory)/Robot.cpp$(PreprocessSuffix): Robot.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Robot.cpp$(PreprocessSuffix) "Robot.cpp"
-
-$(IntermediateDirectory)/Object.cpp$(ObjectSuffix): Object.cpp $(IntermediateDirectory)/Object.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Object.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Object.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/Object.cpp$(DependSuffix): Object.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Object.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Object.cpp$(DependSuffix) -MM "Object.cpp"
-
-$(IntermediateDirectory)/Object.cpp$(PreprocessSuffix): Object.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Object.cpp$(PreprocessSuffix) "Object.cpp"
+$(IntermediateDirectory)/Bridge.cpp$(PreprocessSuffix): Bridge.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Bridge.cpp$(PreprocessSuffix) "Bridge.cpp"
 
 $(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix): remoteApi/extApi.c $(IntermediateDirectory)/remoteApi_extApi.c$(DependSuffix)
 	$(CC) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/remoteApi/extApi.c" $(CFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/remoteApi_extApi.c$(ObjectSuffix) $(IncludePath)
@@ -147,30 +123,6 @@ $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(DependSuffix): remoteApi/ex
 
 $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(PreprocessSuffix): remoteApi/extApiPlatform.c
 	$(CC) $(CFLAGS) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/remoteApi_extApiPlatform.c$(PreprocessSuffix) "remoteApi/extApiPlatform.c"
-
-$(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix): DR12_Robot.cpp $(IntermediateDirectory)/DR12_Robot.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/DR12_Robot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/DR12_Robot.cpp$(DependSuffix): DR12_Robot.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DR12_Robot.cpp$(DependSuffix) -MM "DR12_Robot.cpp"
-
-$(IntermediateDirectory)/DR12_Robot.cpp$(PreprocessSuffix): DR12_Robot.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DR12_Robot.cpp$(PreprocessSuffix) "DR12_Robot.cpp"
-
-$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix): VisionSensor.cpp $(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/VisionSensor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix): VisionSensor.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix) -MM "VisionSensor.cpp"
-
-$(IntermediateDirectory)/VisionSensor.cpp$(PreprocessSuffix): VisionSensor.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/VisionSensor.cpp$(PreprocessSuffix) "VisionSensor.cpp"
-
-$(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix): A_StarPath.cpp $(IntermediateDirectory)/A_StarPath.cpp$(DependSuffix)
-	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/A_StarPath.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IncludePath)
-$(IntermediateDirectory)/A_StarPath.cpp$(DependSuffix): A_StarPath.cpp
-	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/A_StarPath.cpp$(DependSuffix) -MM "A_StarPath.cpp"
-
-$(IntermediateDirectory)/A_StarPath.cpp$(PreprocessSuffix): A_StarPath.cpp
-	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/A_StarPath.cpp$(PreprocessSuffix) "A_StarPath.cpp"
 
 $(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix): OutOfBoundException.cpp $(IntermediateDirectory)/OutOfBoundException.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/OutOfBoundException.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/OutOfBoundException.cpp$(ObjectSuffix) $(IncludePath)
@@ -212,6 +164,14 @@ $(IntermediateDirectory)/Position.cpp$(DependSuffix): Position.cpp
 $(IntermediateDirectory)/Position.cpp$(PreprocessSuffix): Position.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Position.cpp$(PreprocessSuffix) "Position.cpp"
 
+$(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix): PathInterface.cpp $(IntermediateDirectory)/PathInterface.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/PathInterface.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/PathInterface.cpp$(DependSuffix): PathInterface.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/PathInterface.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/PathInterface.cpp$(DependSuffix) -MM "PathInterface.cpp"
+
+$(IntermediateDirectory)/PathInterface.cpp$(PreprocessSuffix): PathInterface.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/PathInterface.cpp$(PreprocessSuffix) "PathInterface.cpp"
+
 $(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix): VRepApi.cpp $(IntermediateDirectory)/VRepApi.cpp$(DependSuffix)
 	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/VRepApi.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/VRepApi.cpp$(ObjectSuffix) $(IncludePath)
 $(IntermediateDirectory)/VRepApi.cpp$(DependSuffix): VRepApi.cpp
@@ -227,6 +187,54 @@ $(IntermediateDirectory)/ConnectionErrorException.cpp$(DependSuffix): Connection
 
 $(IntermediateDirectory)/ConnectionErrorException.cpp$(PreprocessSuffix): ConnectionErrorException.cpp
 	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/ConnectionErrorException.cpp$(PreprocessSuffix) "ConnectionErrorException.cpp"
+
+$(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix): A_StarPath.cpp $(IntermediateDirectory)/A_StarPath.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/A_StarPath.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/A_StarPath.cpp$(DependSuffix): A_StarPath.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/A_StarPath.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/A_StarPath.cpp$(DependSuffix) -MM "A_StarPath.cpp"
+
+$(IntermediateDirectory)/A_StarPath.cpp$(PreprocessSuffix): A_StarPath.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/A_StarPath.cpp$(PreprocessSuffix) "A_StarPath.cpp"
+
+$(IntermediateDirectory)/Object.cpp$(ObjectSuffix): Object.cpp $(IntermediateDirectory)/Object.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Object.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Object.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Object.cpp$(DependSuffix): Object.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Object.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Object.cpp$(DependSuffix) -MM "Object.cpp"
+
+$(IntermediateDirectory)/Object.cpp$(PreprocessSuffix): Object.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Object.cpp$(PreprocessSuffix) "Object.cpp"
+
+$(IntermediateDirectory)/Robot.cpp$(ObjectSuffix): Robot.cpp $(IntermediateDirectory)/Robot.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Robot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Robot.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Robot.cpp$(DependSuffix): Robot.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Robot.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Robot.cpp$(DependSuffix) -MM "Robot.cpp"
+
+$(IntermediateDirectory)/Robot.cpp$(PreprocessSuffix): Robot.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Robot.cpp$(PreprocessSuffix) "Robot.cpp"
+
+$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix): Sensor.cpp $(IntermediateDirectory)/Sensor.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/Sensor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/Sensor.cpp$(DependSuffix): Sensor.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/Sensor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/Sensor.cpp$(DependSuffix) -MM "Sensor.cpp"
+
+$(IntermediateDirectory)/Sensor.cpp$(PreprocessSuffix): Sensor.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/Sensor.cpp$(PreprocessSuffix) "Sensor.cpp"
+
+$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix): VisionSensor.cpp $(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/VisionSensor.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix): VisionSensor.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/VisionSensor.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/VisionSensor.cpp$(DependSuffix) -MM "VisionSensor.cpp"
+
+$(IntermediateDirectory)/VisionSensor.cpp$(PreprocessSuffix): VisionSensor.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/VisionSensor.cpp$(PreprocessSuffix) "VisionSensor.cpp"
+
+$(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix): DR12_Robot.cpp $(IntermediateDirectory)/DR12_Robot.cpp$(DependSuffix)
+	$(CXX) $(IncludePCH) $(SourceSwitch) "/home/ervin/CProjects/codelite_workspace/VREP_Pathfinding/DR12_Robot.cpp" $(CXXFLAGS) $(ObjectSwitch)$(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix) $(IncludePath)
+$(IntermediateDirectory)/DR12_Robot.cpp$(DependSuffix): DR12_Robot.cpp
+	@$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) -MG -MP -MT$(IntermediateDirectory)/DR12_Robot.cpp$(ObjectSuffix) -MF$(IntermediateDirectory)/DR12_Robot.cpp$(DependSuffix) -MM "DR12_Robot.cpp"
+
+$(IntermediateDirectory)/DR12_Robot.cpp$(PreprocessSuffix): DR12_Robot.cpp
+	$(CXX) $(CXXFLAGS) $(IncludePCH) $(IncludePath) $(PreprocessOnlySwitch) $(OutputSwitch) $(IntermediateDirectory)/DR12_Robot.cpp$(PreprocessSuffix) "DR12_Robot.cpp"
 
 
 -include $(IntermediateDirectory)/*$(DependSuffix)
