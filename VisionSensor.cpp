@@ -1,12 +1,12 @@
 #include "VisionSensor.h"
 
-VisionSensor* VisionSensor::build(const SensorBuilder& sensorBuilder)
+VisionSensor* VisionSensor::build(const ObjectBuilder& sensorBuilder)
 {
     VisionSensor* sensor = new VisionSensor(sensorBuilder);
     return sensor;
 }
 
-VisionSensor::VisionSensor(const SensorBuilder& sensorBuilder)
+VisionSensor::VisionSensor(const ObjectBuilder& sensorBuilder)
     : Sensor(sensorBuilder)
     , isInitialized{ false }
 {

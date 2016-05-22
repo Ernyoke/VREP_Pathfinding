@@ -2,20 +2,9 @@
 #define SENSOR_H
 
 #include <memory>
+#include "Object.h"
 
-extern "C" {
-#include "remoteApi/extApi.h"
-}
-
-class VRepApi;
-
-struct SensorBuilder
-{
-    simxInt clientId;
-    simxInt handle;
-};
-
-class Sensor
+class Sensor : public Object
 {
 public:
     virtual ~Sensor();
@@ -23,9 +12,7 @@ public:
     virtual void initalize() = 0;
 
 protected:
-    Sensor(const SensorBuilder& sensorBuilder);
-    const simxInt m_ClientId;
-    const simxInt m_Handle;
+    Sensor(const ObjectBuilder& sensorBuilder);
 };
 
 #endif // SENSOR_H

@@ -3,12 +3,14 @@
 
 #include <string>
 #include <exception>
+#include <tuple>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "ConnectionErrorException.h"
 #include "Sensor.h"
 #include "Position.h"
 #include "VisionSensor.h"
+#include "DR12_Robot.h"
 
 extern "C" {
 #include "remoteApi/extApi.h"
@@ -33,8 +35,9 @@ public:
     void disconnect();
 
     HANDLE getObjectHandle(const std::string objectName) const;
-    Position getObjectPosition(const std::string objectName) const;
     VisionSensor* getVisionSensor(const std::string objName) const;
+    DR12_Robot* getDR12Unit(const std::string objName) const;
+    
     
 private:
     void wait(const int sec) const;

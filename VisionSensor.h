@@ -22,7 +22,7 @@ public:
     
     virtual ~VisionSensor();
     
-    static VisionSensor* build(const SensorBuilder& sensorBuilder);
+    static VisionSensor* build(const ObjectBuilder& sensorBuilder);
     
     virtual void initalize();
     bool initComplete() const;
@@ -30,7 +30,7 @@ public:
     Resolution resolution() const;
     
 protected:
-    VisionSensor(const SensorBuilder& sensorBuilder);
+    VisionSensor(const ObjectBuilder& sensorBuilder);
     
 private:
     bool isInitialized;

@@ -21,20 +21,8 @@
   <Dependencies/>
   <VirtualDirectory Name="src">
     <File Name="main.cpp"/>
-    <File Name="Playground.h"/>
-    <File Name="Playground.cpp"/>
     <File Name="PathInterface.h"/>
     <File Name="PathInterface.cpp"/>
-    <File Name="A_StarPath.h"/>
-    <File Name="A_StarPath.cpp"/>
-    <File Name="Position.h"/>
-    <File Name="Position.cpp"/>
-    <File Name="OutOfBoundException.h"/>
-    <File Name="OutOfBoundException.cpp"/>
-    <File Name="HistoricalPosition.h"/>
-    <File Name="HistoricalPosition.cpp"/>
-    <File Name="NoPathException.h"/>
-    <File Name="NoPathException.cpp"/>
     <VirtualDirectory Name="remoteApi">
       <File Name="remoteApi/extApi.c"/>
       <File Name="remoteApi/extApi.h"/>
@@ -44,14 +32,40 @@
     <VirtualDirectory Name="input">
       <File Name="input.txt"/>
     </VirtualDirectory>
-    <File Name="VRepApi.h"/>
-    <File Name="VRepApi.cpp"/>
-    <File Name="ConnectionErrorException.cpp"/>
-    <File Name="ConnectionErrorException.h"/>
     <File Name="Sensor.h"/>
     <File Name="Sensor.cpp"/>
-    <File Name="VisionSensor.h"/>
-    <File Name="VisionSensor.cpp"/>
+    <File Name="Robot.h"/>
+    <File Name="Robot.cpp"/>
+    <File Name="Object.h"/>
+    <File Name="Object.cpp"/>
+    <VirtualDirectory Name="Robots">
+      <File Name="DR12_Robot.cpp"/>
+      <File Name="DR12_Robot.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="Sensors">
+      <File Name="VisionSensor.cpp"/>
+      <File Name="VisionSensor.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="PathFinding">
+      <File Name="A_StarPath.cpp"/>
+      <File Name="A_StarPath.h"/>
+      <File Name="OutOfBoundException.cpp"/>
+      <File Name="OutOfBoundException.h"/>
+      <File Name="Playground.cpp"/>
+      <File Name="Playground.h"/>
+      <File Name="HistoricalPosition.cpp"/>
+      <File Name="HistoricalPosition.h"/>
+      <File Name="NoPathException.cpp"/>
+      <File Name="NoPathException.h"/>
+      <File Name="Position.cpp"/>
+      <File Name="Position.h"/>
+    </VirtualDirectory>
+    <VirtualDirectory Name="VREP">
+      <File Name="VRepApi.cpp"/>
+      <File Name="VRepApi.h"/>
+      <File Name="ConnectionErrorException.cpp"/>
+      <File Name="ConnectionErrorException.h"/>
+    </VirtualDirectory>
   </VirtualDirectory>
   <Settings Type="Executable">
     <GlobalSettings>

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <tuple>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "memory"
@@ -9,6 +10,7 @@
 #include "NoPathException.h"
 #include "VRepApi.h"
 #include "VisionSensor.h"
+#include "DR12_Robot.h"
 
 int main(int argc, char** argv)
 {
@@ -46,9 +48,11 @@ int main(int argc, char** argv)
         cv::Mat img = visionSensor->image(VisionSensor::ImageType::GRAYSCALE);
         cv::imshow("opencvtest",img);
         cv::waitKey(0);
-        Position pos = vRepApi.getObjectPosition("dr12");
-        std::cout << pos.X() << " " << pos.Y() << std::endl;
+        DR12_Robot *robot = vRepApi.getDR12Unit("dr12");
+        std::tuple<float, float, float> pos = robot->getGlobalPosition();
+        std::cout << "DR12 pos: " << std::get<0>(pos) << " " << std::get<1>(pos) <<  " " << std::get<2>(pos) << std::endl;
         delete visionSensor;
+        delete robot;
         vRepApi.disconnect();
     } catch(ConnectionErrorException* ex) {
         std::cout << ex->what() << std::endl;
