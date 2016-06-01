@@ -3,13 +3,17 @@
 
 #include "Object.h"
 
+struct RobotBuilder : public ObjectBuilder {
+    RobotBuilder(simxInt clientId, simxInt handle);
+};
+
 class Robot : public Object
 {
 public:
     virtual ~Robot();
 
 protected:
-    Robot(const ObjectBuilder& robotBuilder);
+    Robot(const RobotBuilder& robotBuilder);
 };
 
 #endif // ROBOT_H

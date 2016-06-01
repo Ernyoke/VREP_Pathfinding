@@ -23,6 +23,11 @@ Playground::Playground()
     m_Map.clear();
 }
 
+Playground::Playground(const Matrix& groundMap)
+    : m_Map{ groundMap }
+{
+}
+
 Playground::~Playground()
 {
     // empty destructor
@@ -78,6 +83,7 @@ bool Playground::isEmpty(const Position position) const
 {
     bool result = false;
     if(position.X() < m_Map.size1() && position.Y() < m_Map.size2()) {
+        STATE val = m_Map(position.X(), position.Y());
         result = m_Map(position.X(), position.Y()) == EMPTY;
     }
     return result;

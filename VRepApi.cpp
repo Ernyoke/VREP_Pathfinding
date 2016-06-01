@@ -34,7 +34,7 @@ void VRepApi::disconnect()
     simxFinish(m_clientId);
 }
 
-HANDLE VRepApi::getObjectHandle(const std::string objectName) const
+HANDLE VRepApi::getObjectHandle(const std::string& objectName) const
 {
     HANDLE handle = 0;
     simxGetObjectHandle(m_clientId, const_cast<simxChar*>(objectName.c_str()), &handle, simx_opmode_oneshot_wait);
@@ -48,13 +48,25 @@ VisionSensor* VRepApi::getVisionSensor(const std::string objName) const
     return VisionSensor::build(builder);
 }
 
-DR12_Robot* VRepApi::getDR12Unit(const std::string objName) const
+DR12_Robot* VRepApi::getDR12Unit(const std::string& objName,
+                                 const std::string& rightWheelName,
+                                 const std::string& leftWheelName,
+                                 const std::string& rightJointName,
+                                 const std::string& leftJointName) const
 {
     HANDLE handle = getObjectHandle(objName);
-    ObjectBuilder builder{ m_clientId, handle };
+    HANDLE rightWheelHandle = getObjectHandle(rightWheelName);
+    HANDLE leftWheelHandle = getObjectHandle(leftWheelName);
+    HANDLE rightJointHandle = getObjectHandle(rightJointName);
+    HANDLE leftJointHandle = getObjectHandle(leftJointName);
+
+    DR12RobotBuilder builder{
+        m_clientId, handle, rightWheelHandle, leftWheelHandle, rightJointHandle, leftJointHandle
+    };
     return DR12_Robot::build(builder);
 }
 
-void VRepApi::wait(const int sec) const {
+void VRepApi::wait(const int sec) const
+{
     std::this_thread::sleep_for(std::chrono::seconds(sec));
 }

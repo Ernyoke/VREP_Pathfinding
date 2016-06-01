@@ -1,6 +1,9 @@
 #include "Robot.h"
 
-Robot::Robot(const ObjectBuilder& robotBuilder)
+RobotBuilder::RobotBuilder(simxInt clientId, simxInt handle) : ObjectBuilder { clientId, handle } {
+}
+
+Robot::Robot(const RobotBuilder& robotBuilder)
     : Object(robotBuilder)
 {
 }

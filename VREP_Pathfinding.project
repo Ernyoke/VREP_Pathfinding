@@ -44,8 +44,8 @@
       <VirtualDirectory Name="A_Star">
         <File Name="A_StarPath.cpp"/>
         <File Name="A_StarPath.h"/>
+        <File Name="PathInterface.cpp"/>
       </VirtualDirectory>
-      <File Name="PathInterface.cpp"/>
       <File Name="PathInterface.h"/>
     </VirtualDirectory>
     <VirtualDirectory Name="VREP">
@@ -67,6 +67,12 @@
         <VirtualDirectory Name="Robots">
           <File Name="DR12_Robot.cpp"/>
           <File Name="DR12_Robot.h"/>
+          <VirtualDirectory Name="Parts">
+            <File Name="Wheel.h"/>
+            <File Name="Wheel.cpp"/>
+            <File Name="Joint.h"/>
+            <File Name="Joint.cpp"/>
+          </VirtualDirectory>
         </VirtualDirectory>
       </VirtualDirectory>
     </VirtualDirectory>

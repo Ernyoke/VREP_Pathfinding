@@ -6,10 +6,13 @@
 
 enum STATE { WALL = 1, TOUCHED = 2, EMPTY = 0, START = 3, END = 4 };
 
+using Matrix = boost::numeric::ublas::matrix<STATE>;
+
 class Dimension
 {
 public:
     Dimension(unsigned int width, unsigned int height);
+    Dimension();
     ~Dimension();
 
     unsigned int area() const;
@@ -23,6 +26,7 @@ class Playground
 
 public:
     Playground();
+    Playground(const Matrix& groundMap);
     virtual ~Playground();
 
     void readFromFile(std::ifstream& stream);
@@ -36,7 +40,7 @@ public:
     Dimension dimension() const;
 
 private:
-    boost::numeric::ublas::matrix<STATE> m_Map;
+    Matrix m_Map;
 };
 
 #endif // PLAYGROUND_H

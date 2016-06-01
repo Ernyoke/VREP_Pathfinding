@@ -65,6 +65,7 @@ CoordinateList_sptr A_StarPath::path()
                 HistoricalPosition next = current.go(dir[i]);
                 if(copyPlayGround.isEmpty(next)) {
                     next.setPreviousPosition(current);
+                    copyPlayGround.touch(next);
                     posList.push(next);
                 }
             } catch(OutOfBoundException* ex) {
