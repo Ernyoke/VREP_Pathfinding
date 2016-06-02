@@ -34,9 +34,13 @@ public:
     float wheelDiameter() const;
     float wheelDistance() const;
     
-    void followPath(const std::list< std::tuple<float, float, float> >& path) const;
+    void followPath(const std::list< std::tuple<float, float, float> >& path);
     
-    void setOrientationXY(const float grades);
+    std::tuple<float, float, float> orientation() const;
+    float relativeOrientationXY(const std::tuple<float, float>& point) const;
+    
+    void setOrientationXY(const float angle);
+    
 
 protected:
     DR12_Robot(const DR12RobotBuilder& robotBuilder);
