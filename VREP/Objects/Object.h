@@ -4,8 +4,8 @@
 #include <tuple>
 
 extern "C" {
-#include "remoteApi/extApi.h"
-#include "remoteApi/v_repConst.h"
+#include "../../remoteApi/extApi.h"
+#include "../../remoteApi/v_repConst.h"
 }
 
 struct ObjectBuilder {

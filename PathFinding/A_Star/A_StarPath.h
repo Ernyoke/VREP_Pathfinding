@@ -4,10 +4,10 @@
 #include <memory>
 #include <queue>
 #include <vector>
-#include "Playground.h"
-#include "Position.h"
-#include "HistoricalPosition.h"
-#include "PathInterface.h"
+#include "../Playground.h"
+#include "../Position.h"
+#include "../HistoricalPosition.h"
+#include "../PathInterface.h"
 
 using Field = std::shared_ptr<Playground>;
 

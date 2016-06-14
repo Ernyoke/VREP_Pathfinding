@@ -1,7 +1,7 @@
 #ifndef JOINT_H
 #define JOINT_H
 
-#include "Object.h"
+#include "../../Object.h"
 
 class Joint : public Object {
 public:

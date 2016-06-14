@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="CPP_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Bridge.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/v_repConst.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/extApiPlatform.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/extApi.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/extApiInternal.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/v_repTypes.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/extApi.c" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/v_repLib.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/remoteApi/extApiPlatform.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/ConnectionErrorException.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/VRepApi.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/VRepApi.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Object.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensors/VisionSensor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensors/VisionSensor.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Joint.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Joint.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Wheel.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Wheel.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/DR12_Robot.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/DR12_Robot.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Object.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensor.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robot.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robot.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensor.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/ConnectionErrorException.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/NoPathException.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/OutOfBoundException.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/HistoricalPosition.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/A_Star/A_StarPath.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/A_Star/A_StarPath.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/Playground.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/Position.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/HistoricalPosition.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/Playground.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/NoPathException.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/OutOfBoundException.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/PathInterface.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/PathInterface.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/Position.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Bridge.h" isTestSource="false" />
+    </content>
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module-library">
+      <library name="Header Search Paths">
+        <CLASSES>
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
+          <root url="file:///usr/include" />
+          <root url="file:///usr/local/include" />
+        </CLASSES>
+        <SOURCES>
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include-fixed" />
+          <root url="file:///usr/lib/gcc/x86_64-linux-gnu/5/include" />
+          <root url="file:///usr/include" />
+          <root url="file:///usr/local/include" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+  </component>
+</module>

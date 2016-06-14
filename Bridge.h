@@ -10,10 +10,10 @@
 
 #include <boost/numeric/ublas/matrix.hpp>
 
-#include "Position.h"
-#include "VisionSensor.h"
-#include "Playground.h"
-#include "PathInterface.h"
+#include "PathFinding/Position.h"
+#include "VREP/Objects/Sensors/VisionSensor.h"
+#include "PathFinding/Playground.h"
+#include "PathFinding/PathInterface.h"
 
 namespace Bridge {
     Position convertToPosition(const std::tuple<float, float, float>, const VisionSensor::Resolution &resolution);

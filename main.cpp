@@ -4,13 +4,13 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "memory"
-#include "Playground.h"
-#include "Position.h"
-#include "A_StarPath.h"
-#include "NoPathException.h"
-#include "VRepApi.h"
-#include "VisionSensor.h"
-#include "DR12_Robot.h"
+#include "PathFinding/Playground.h"
+#include "PathFinding/Position.h"
+#include "PathFinding/A_Star/A_StarPath.h"
+#include "PathFinding/NoPathException.h"
+#include "VREP/VRepApi.h"
+#include "VREP/Objects/Sensors/VisionSensor.h"
+#include "VREP/Objects/Robots/DR12_Robot.h"
 #include "Bridge.h"
 
 int main(int argc, char **argv) {

@@ -4,9 +4,9 @@
 #include <tuple>
 #include <vector>
 
-#include "Robot.h"
-#include "Wheel.h"
-#include "Joint.h"
+#include "../Robot.h"
+#include "Parts/Wheel.h"
+#include "Parts/Joint.h"
 
 struct DR12RobotBuilder : public RobotBuilder {
 

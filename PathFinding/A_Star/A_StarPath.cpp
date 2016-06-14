@@ -1,6 +1,6 @@
 #include "A_StarPath.h"
-#include "OutOfBoundException.h"
-#include "NoPathException.h"
+#include "../OutOfBoundException.h"
+#include "../NoPathException.h"
 
 static const Direction dir[] = {
         Direction(0, -1), // N

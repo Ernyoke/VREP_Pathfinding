@@ -7,13 +7,13 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include "ConnectionErrorException.h"
-#include "Sensor.h"
-#include "Position.h"
-#include "VisionSensor.h"
-#include "DR12_Robot.h"
+#include "Objects/Sensor.h"
+#include "../PathFinding/Position.h"
+#include "Objects/Sensors/VisionSensor.h"
+#include "Objects/Robots/DR12_Robot.h"
 
 extern "C" {
-#include "remoteApi/extApi.h"
+#include "../remoteApi/extApi.h"
 }
 
 using HANDLE = simxInt;
