@@ -4,14 +4,13 @@
 #include <exception>
 #include <string>
 
-class OutOfBoundException : public std::exception
-{
+class OutOfBoundException : public std::exception {
 public:
     explicit OutOfBoundException(const std::string message);
+
     virtual ~OutOfBoundException();
 
-    virtual const char* what() const throw()
-    {
+    virtual const char *what() const throw() {
         return m_Msg.c_str();
     }
 

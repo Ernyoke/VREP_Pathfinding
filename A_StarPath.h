@@ -11,14 +11,15 @@
 
 using Field = std::shared_ptr<Playground>;
 
-class A_StarPath : public PathInterface
-{
+class A_StarPath : public PathInterface {
 public:
-    A_StarPath(const Field& playGround);
+    A_StarPath(const Field &playGround);
+
     virtual ~A_StarPath();
 
-    bool setStartPoint(const Position& startPos);
-    bool setEndPoint(const Position& endPos);
+    bool setStartPoint(const Position &startPos);
+
+    bool setEndPoint(const Position &endPos);
 
     virtual CoordinateList_sptr path();
 
@@ -26,7 +27,7 @@ private:
     const Field m_PlayGround; //the Playground stays unmodified during the life of this class
     Position m_Start;
     Position m_End;
-    
+
 };
 
 #endif // A_STARPATH_H

@@ -13,8 +13,7 @@
 #include "DR12_Robot.h"
 #include "Bridge.h"
 
-int main(int argc, char** argv)
-{
+int main(int argc, char **argv) {
     VRepApi vRepApi;
 
     std::cout << "Waiting for connection!" << std::endl;
@@ -22,11 +21,10 @@ int main(int argc, char** argv)
     try {
         vRepApi.connect("127.0.0.1", 19999, true, true, 2000);
         std::cout << "Connected!" << std::endl;
-        VisionSensor* visionSensor = vRepApi.getVisionSensor("mapSensor");
+        VisionSensor *visionSensor = vRepApi.getVisionSensor("mapSensor");
         visionSensor->initalize();
-        while(!visionSensor->initComplete())
-            ;
-        DR12_Robot* robot = vRepApi.getDR12Unit("dr12");
+        while (!visionSensor->initComplete());
+        DR12_Robot *robot = vRepApi.getDR12Unit("dr12");
         VisionSensor::Resolution resolution = visionSensor->resolution();
         Position robotPos = Bridge::convertToPosition(robot->getGlobalPosition(), resolution);
         std::cout << "DR12 pos: " << robotPos.X() << " " << robotPos.Y() << std::endl;
@@ -50,10 +48,10 @@ int main(int argc, char** argv)
         delete visionSensor;
         delete robot;
         vRepApi.disconnect();
-    } catch(ConnectionErrorException* ex) {
+    } catch (ConnectionErrorException *ex) {
         std::cout << ex->what() << std::endl;
         delete ex;
-    } catch(NoPathException* ex) {
+    } catch (NoPathException *ex) {
         std::cout << ex->what() << std::endl;
         delete ex;
     }

@@ -4,15 +4,14 @@
 #include <memory>
 #include "Object.h"
 
-class Sensor : public Object
-{
+class Sensor : public Object {
 public:
     virtual ~Sensor();
-    
+
     virtual void initalize() = 0;
 
 protected:
-    Sensor(const ObjectBuilder& sensorBuilder);
+    Sensor(const ObjectBuilder &sensorBuilder);
 };
 
 #endif // SENSOR_H

@@ -4,14 +4,13 @@
 #include <exception>
 #include <string>
 
-class NoPathException
-{
+class NoPathException {
 public:
     explicit NoPathException(const std::string message);
+
     virtual ~NoPathException();
 
-    virtual const char* what() const throw()
-    {
+    virtual const char *what() const throw() {
         return m_Msg.c_str();
     }
 

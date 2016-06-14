@@ -5,16 +5,15 @@
 
 extern "C" {
 #include "remoteApi/extApi.h"
+#include "remoteApi/v_repConst.h"
 }
 
-struct ObjectBuilder
-{
+struct ObjectBuilder {
     simxInt clientId;
     simxInt handle;
 };
 
-class Object
-{
+class Object {
 public:
     virtual ~Object();
 
@@ -23,7 +22,8 @@ public:
 protected:
     const simxInt m_ClientId;
     const simxInt m_Handle;
-    Object(const ObjectBuilder& objectBuilder);
+
+    Object(const ObjectBuilder &objectBuilder);
 };
 
 #endif // OBJECT_H
