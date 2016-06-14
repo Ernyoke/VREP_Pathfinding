@@ -16,10 +16,10 @@ std::tuple<float, float, float> Bridge::convertToVREPCoordinate(const Position& 
     return std::make_tuple(x, y, z);
 }
 
-std::list<std::tuple<float, float, float> > Bridge::convertToVREPPath(const CoordinateList_sptr& pathCoordList,
+std::vector<std::tuple<float, float, float> > Bridge::convertToVREPPath(const CoordinateList_sptr& pathCoordList,
                                                                       const VisionSensor::Resolution& resolution)
 {
-    std::list<std::tuple<float, float, float> > vrepPath;
+    std::vector<std::tuple<float, float, float> > vrepPath;
     for(auto it = pathCoordList->cbegin(); it != pathCoordList->cend(); ++it) {
         vrepPath.push_back(convertToVREPCoordinate(*it, resolution));
     }

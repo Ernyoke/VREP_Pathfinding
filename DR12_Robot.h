@@ -2,7 +2,7 @@
 #define DR12_ROBOT_H
 
 #include <tuple>
-#include <list>
+#include <vector>
 
 #include "Robot.h"
 #include "Wheel.h"
@@ -34,12 +34,16 @@ public:
     float wheelDiameter() const;
     float wheelDistance() const;
     
-    void followPath(const std::list< std::tuple<float, float, float> >& path);
+    void followPath(const std::vector< std::tuple<float, float, float> >& path);
     
     std::tuple<float, float, float> orientation() const;
     float relativeOrientationXY(const std::tuple<float, float>& point) const;
     
     void setOrientationXY(const float angle);
+    
+    void go(const float rightJointVelocity, const float leftJointVelocity);
+    void goAhead(const float jointVelocity);
+    void stop();
     
 
 protected:

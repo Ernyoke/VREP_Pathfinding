@@ -2,7 +2,7 @@
 #define BRIDGE_H
 
 #include <tuple>
-#include <list>
+#include <vector>
 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -20,7 +20,7 @@ namespace Bridge
 Position convertToPosition(const std::tuple<float, float, float>, const VisionSensor::Resolution& resolution);
 std::tuple<float, float, float> convertToVREPCoordinate(const Position& pos,
                                                               const VisionSensor::Resolution& resolution);
-std::list<std::tuple<float, float, float> > convertToVREPPath(const CoordinateList_sptr& pathCoordList,
+std::vector<std::tuple<float, float, float> > convertToVREPPath(const CoordinateList_sptr& pathCoordList,
                                                               const VisionSensor::Resolution& resolution);
 void coverObject(cv::Mat& ground,
                  const Position& pos,

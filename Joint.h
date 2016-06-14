@@ -10,8 +10,11 @@ public:
     
     static Joint* build(const ObjectBuilder& objectBuilder);
     
+    void setTargetVelocity(float velocity);
+    
 protected:
     Joint(const ObjectBuilder& objectBuilder);
+    
 
 };
 

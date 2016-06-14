@@ -1,5 +1,6 @@
 #include <cmath>
 #include <iostream>
+#include <thread>
 
 #include "DR12_Robot.h"
 
@@ -59,14 +60,31 @@ float DR12_Robot::wheelDistance() const
     return std::sqrt(x * x + y * y);
 }
 
-void DR12_Robot::followPath(const std::list<std::tuple<float, float, float> >& path)
+void DR12_Robot::followPath(const std::vector<std::tuple<float, float, float> >& path)
 {
-    std::tuple<float, float, float> first = path.front();
-    //float orient = relativeOrientationXY(std::make_tuple(std::get<0>(first), std::get<1>(first)));
-    //float orient = relativeOrientationXY(std::make_tuple(-1.6211f, -0.625f));
-//    std::cout << "Orientation for first: " << orient << std::endl;
-    setOrientationXY(6);
-    orientation();
+    // std::tuple<float, float, float> first = path.front();
+    // float orient = relativeOrientationXY(std::make_tuple(std::get<0>(first), std::get<1>(first)));
+    // float orient = relativeOrientationXY(std::make_tuple(-1.6211f, -0.625f));
+    //    std::cout << "Orientation for first: " << orient << std::endl;
+    // setOrientationXY(6);
+    // orientation();
+    goAhead(5.0f);
+}
+
+void DR12_Robot::go(const float rightJointVelocity, const float leftJointVelocity)
+{
+    m_RightJoint->setTargetVelocity(rightJointVelocity);
+    m_LeftJoint->setTargetVelocity(leftJointVelocity);
+}
+
+void DR12_Robot::goAhead(const float jointVelocity)
+{
+    go(jointVelocity, jointVelocity);
+}
+
+void DR12_Robot::stop()
+{
+    goAhead(0.0f);
 }
 
 std::tuple<float, float, float> DR12_Robot::orientation() const
