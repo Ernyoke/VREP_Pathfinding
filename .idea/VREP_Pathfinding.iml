@@ -19,9 +19,9 @@
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Object.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensors/VisionSensor.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensors/VisionSensor.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Joint.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Joint.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Wheel.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Joint.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Joint.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/Parts/Wheel.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/DR12_Robot.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robots/DR12_Robot.cpp" isTestSource="false" />
@@ -39,13 +39,15 @@
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/Playground.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/Position.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/HistoricalPosition.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/PathFinding/Playground.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/PathInterface.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/NoPathException.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/OutOfBoundException.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/PathFinding/PathInterface.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/PathFinding/Playground.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/PathInterface.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/Position.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Bridge.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utilities/Utilities.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/Utilities/Utilities.h" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library">

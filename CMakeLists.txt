@@ -47,7 +47,7 @@ set(SOURCE_FILES main.cpp
         remoteApi/extApi.h
         remoteApi/v_repConst.h
         remoteApi/v_repLib.h
-        remoteApi/v_repTypes.h)
+        remoteApi/v_repTypes.h Utilities/Utilities.cpp Utilities/Utilities.h)
 
 add_executable(VREP_PathFinding ${SOURCE_FILES})
 

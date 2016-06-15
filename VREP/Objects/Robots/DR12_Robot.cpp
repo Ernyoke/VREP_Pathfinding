@@ -3,8 +3,7 @@
 #include <thread>
 
 #include "DR12_Robot.h"
-
-constexpr float PI = 3.14159265;
+#include "../../../Utilities/Utilities.h"
 
 DR12RobotBuilder::DR12RobotBuilder(simxInt clientId,
                                    simxInt handle,
@@ -44,20 +43,41 @@ float DR12_Robot::wheelDistance() const {
     std::tuple<float, float, float> rightWheelPos = m_RightWheel->getGlobalPosition();
     std::tuple<float, float, float> leftWheelPos = m_LeftWheel->getGlobalPosition();
 
-    float x = std::abs(std::get<0>(rightWheelPos) - std::get<0>(leftWheelPos));
-    float y = std::abs(std::get<1>(rightWheelPos) - std::get<1>(leftWheelPos));
+    return Utilities::distance(std::make_tuple(std::get<0>(rightWheelPos), std::get<1>(rightWheelPos)),
+                               std::make_tuple(std::get<0>(leftWheelPos), std::get<1>(leftWheelPos)));
 
-    return std::sqrt(x * x + y * y);
+//    float x = std::abs(std::get<0>(rightWheelPos) - std::get<0>(leftWheelPos));
+//    float y = std::abs(std::get<1>(rightWheelPos) - std::get<1>(leftWheelPos));
+//
+//    return std::sqrt(x * x + y * y);
 }
 
 void DR12_Robot::followPath(const std::vector<std::tuple<float, float, float> > &path) {
-    // std::tuple<float, float, float> first = path.front();
-    // float orient = relativeOrientationXY(std::make_tuple(std::get<0>(first), std::get<1>(first)));
-    // float orient = relativeOrientationXY(std::make_tuple(-1.6211f, -0.625f));
-    //    std::cout << "Orientation for first: " << orient << std::endl;
-    // setOrientationXY(6);
-    // orientation();
-    goAhead(5.0f);
+    float speed = 0.5;
+    float rotationSpeed = 0.5;
+    float d = wheelDistance();
+    float speedRight = speed + d * rotationSpeed;
+    float speedLeft = speed - d * rotationSpeed;
+    float r = wheelDiameter() / 2;
+    float omagaRight = speedRight / r;
+    float omagaLeft = speedLeft / r;
+
+    bool stop = false;
+    int i = 200;
+
+    while (!stop) {
+        auto pathPoint = path.at(i);
+        float orientation = relativeOrientationXY(std::make_tuple(std::get<0>(pathPoint), std::get<1>(pathPoint)));
+        go(-omagaRight * orientation, -omagaLeft * orientation);
+        auto position = getGlobalPosition();
+        float distance = Utilities::distance(std::make_tuple(std::get<0>(position), std::get<1>(position)),
+                                             std::make_tuple(std::get<0>(pathPoint), std::get<1>(pathPoint)));
+        if (distance < 0.05) {
+            i += 50;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    }
 }
 
 void DR12_Robot::go(const float rightJointVelocity, const float leftJointVelocity) {
@@ -76,14 +96,16 @@ void DR12_Robot::stop() {
 std::tuple<float, float, float> DR12_Robot::orientation() const {
     simxFloat angles[3];
     simxInt ret = simxGetObjectOrientation(m_ClientId, m_Handle, -1, angles, simx_opmode_oneshot_wait);
-    std::cout << "Orientation: " << angles[0] << " " << angles[1] << " " << angles[2] << std::endl;
     return std::make_tuple(angles[0], angles[1], angles[2]);
 }
 
 float DR12_Robot::relativeOrientationXY(const std::tuple<float, float> &point) const {
     float beta = 0;
+    float myBeta = 0;
 
-    std::tuple<float, float, float> myPosition = getGlobalPosition();
+    auto myPosition = getGlobalPosition();
+    auto myOrientation = orientation();
+
     float x = std::get<0>(point) - std::get<0>(myPosition);
     float y = std::get<1>(point) - std::get<1>(myPosition);
 
@@ -91,39 +113,41 @@ float DR12_Robot::relativeOrientationXY(const std::tuple<float, float> &point) c
         beta = std::atan(x / y);
     }
     if (x < 0 && y >= 0) {
-        beta = PI - std::atan(x / y);
+        beta = Utilities::PI - std::atan(x / y);
     }
     if (x < 0 && y < 0) {
-        beta = PI + std::atan(x / y);
+        beta = Utilities::PI + std::atan(x / y);
     }
     if (x >= 0 && y < 0) {
-        beta = 2 * PI - std::atan(x / y);
+        beta = 2 * Utilities::PI - std::atan(x / y);
     }
 
-    return beta;
+    myBeta = Utilities::orientationXY(myOrientation);
+
+    return beta - myBeta;
 }
 
 void DR12_Robot::setOrientationXY(const float angle) {
     simxFloat angles[3];
     simxInt ret = simxGetObjectOrientation(m_ClientId, m_Handle, -1, angles, simx_opmode_oneshot_wait);
-    if (angle >= 0 && angle < PI / 2) {
+    if (angle >= 0 && angle < Utilities::PI / 2) {
         angles[0] = -std::abs(angles[0]);
         angles[1] = -angle;
         angles[2] = -std::abs(angles[2]);
     }
-    if (angle >= PI / 2 && angle < PI) {
+    if (angle >= Utilities::PI / 2 && angle < Utilities::PI) {
         angles[0] = std::abs(angles[0]);
-        angles[1] = -(PI - angle);
+        angles[1] = -(Utilities::PI - angle);
         angles[2] = std::abs(angles[2]);
     }
-    if (angle >= PI && angle < 3 * PI / 2) {
+    if (angle >= Utilities::PI && angle < 3 * Utilities::PI / 2) {
         angles[0] = std::abs(angles[0]);
-        angles[1] = PI + angle;
+        angles[1] = Utilities::PI + angle;
         angles[2] = std::abs(angles[2]);
     }
-    if (angle >= 3 * PI / 2 && angle <= 2 * PI) {
+    if (angle >= 3 * Utilities::PI / 2 && angle <= 2 * Utilities::PI) {
         angles[0] = -std::abs(angles[0]);
-        angles[1] = 2 * PI - angle;
+        angles[1] = 2 * Utilities::PI - angle;
         angles[2] = -std::abs(angles[2]);
     }
     ret = simxSetObjectOrientation(m_ClientId, m_Handle, -1, angles, simx_opmode_oneshot_wait);
