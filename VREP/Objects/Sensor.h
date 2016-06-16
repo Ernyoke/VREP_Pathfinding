@@ -8,8 +8,6 @@ class Sensor : public Object {
 public:
     virtual ~Sensor();
 
-    virtual void initalize() = 0;
-
 protected:
     Sensor(const ObjectBuilder &sensorBuilder);
 };

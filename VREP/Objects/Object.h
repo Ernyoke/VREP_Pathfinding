@@ -17,7 +17,7 @@ class Object {
 public:
     virtual ~Object();
 
-    std::tuple<float, float, float> getGlobalPosition() const;
+    std::tuple<float, float, float> globalPosition() const;
 
 protected:
     const simxInt m_ClientId;

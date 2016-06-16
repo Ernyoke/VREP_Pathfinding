@@ -3,6 +3,7 @@ project(VREP_PathFinding)
 
 set(OpenCV_FOUND 1)
 find_package(OpenCV REQUIRED)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 
 set(SOURCE_FILES main.cpp
@@ -10,8 +11,8 @@ set(SOURCE_FILES main.cpp
         PathFinding/A_Star/A_StarPath.h
         Bridge.cpp
         Bridge.h
-        VREP/ConnectionErrorException.cpp
-        VREP/ConnectionErrorException.h
+        VREP/Exceptions/ConnectionErrorException.cpp
+        VREP/Exceptions/ConnectionErrorException.h
         VREP/Objects/Robots/DR12_Robot.h
         VREP/Objects/Robots/DR12_Robot.cpp
         PathFinding/HistoricalPosition.cpp
@@ -47,9 +48,15 @@ set(SOURCE_FILES main.cpp
         remoteApi/extApi.h
         remoteApi/v_repConst.h
         remoteApi/v_repLib.h
-        remoteApi/v_repTypes.h Utilities/Utilities.cpp Utilities/Utilities.h)
+        remoteApi/v_repTypes.h
+        Utilities/Utilities.cpp
+        Utilities/Utilities.h
+        VREP/Exceptions/ReturnCodesExceptions.cpp
+        VREP/Exceptions/ReturnCodesExceptions.h)
 
 add_executable(VREP_PathFinding ${SOURCE_FILES})
 
 add_definitions(-DNON_MATLAB_PARSING -DMAX_EXT_API_CONNECTIONS=255)
+
+include_directories(${OpenCV_INCLUDE_DIRS})
 target_link_libraries(VREP_PathFinding pthread ${OpenCV_LIBS})

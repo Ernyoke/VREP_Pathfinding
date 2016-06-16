@@ -1,4 +1,5 @@
 #include "VisionSensor.h"
+#include "../../Exceptions/ReturnCodesExceptions.h"
 
 VisionSensor *VisionSensor::build(const ObjectBuilder &sensorBuilder) {
     VisionSensor *sensor = new VisionSensor(sensorBuilder);
@@ -6,50 +7,32 @@ VisionSensor *VisionSensor::build(const ObjectBuilder &sensorBuilder) {
 }
 
 VisionSensor::VisionSensor(const ObjectBuilder &sensorBuilder)
-        : Sensor(sensorBuilder), isInitialized{false} {
+    : Sensor(sensorBuilder) {
 }
 
 VisionSensor::~VisionSensor() {
 }
 
-void VisionSensor::initalize() {
-    if (!isInitialized) {
-        simxInt resolution[] = {0, 0};
-        simxUChar *imgData = new simxUChar[1];
-        simxInt result = simxGetVisionSensorImage(m_ClientId, m_Handle, resolution, &imgData, 1, simx_opmode_streaming);
-        isInitialized = true;
-    }
-}
-
-bool VisionSensor::initComplete() const {
-    bool result = false;
-    if (isInitialized) {
-        simxInt resolution[] = {0, 0};
-        simxUChar *imgData = new simxUChar[1];
-        simxInt tempResult =
-                simxGetVisionSensorImage(m_ClientId, m_Handle, resolution, &imgData, 1, simx_opmode_buffer);
-        tempResult == 0 ? result = true : result = false;
-    }
-    return result;
-}
-
 VisionSensor::Resolution VisionSensor::resolution() const {
-    Resolution res{0, 0};
-    if (isInitialized) {
+    try {
+        Resolution res{0, 0};
         simxInt resolutionVec[] = {0, 0};
         simxUChar *imgData = new simxUChar[1];
-        simxInt tempResult =
-                simxGetVisionSensorImage(m_ClientId, m_Handle, resolutionVec, &imgData, 1, simx_opmode_buffer);
+        ReturnCodesExceptions::handleReturnCode(
+            simxGetVisionSensorImage(m_ClientId, m_Handle, resolutionVec, &imgData, 1, simx_opmode_oneshot_wait));
         res.width = static_cast<unsigned int>(resolutionVec[0]);
         res.height = static_cast<unsigned int>(resolutionVec[1]);
+        return res;
     }
-    return res;
+    catch (ReturnCodesExceptions *ex) {
+        throw ex;
+    }
 }
 
 cv::Mat VisionSensor::image(const ImageType &imageType) const {
-    simxUChar *imgData = nullptr;
-    Resolution res = {0, 0};
-    if (isInitialized) {
+    try {
+        simxUChar *imgData = nullptr;
+        Resolution res = {0, 0};
         res = resolution();
         simxInt resolutionVec[] = {0, 0};
         switch (imageType) {
@@ -62,10 +45,13 @@ cv::Mat VisionSensor::image(const ImageType &imageType) const {
                 break;
             }
         }
-        simxGetVisionSensorImage(m_ClientId, m_Handle, resolutionVec, &imgData, imageType, simx_opmode_buffer);
+        ReturnCodesExceptions::handleReturnCode(
+            simxGetVisionSensorImage(m_ClientId, m_Handle, resolutionVec, &imgData, imageType, simx_opmode_oneshot_wait));
+        return cv::Mat(res.height, res.width, convertImageType(imageType), imgData);
     }
-
-    return cv::Mat(res.height, res.width, convertImageType(imageType), imgData);
+    catch (ReturnCodesExceptions ex) {
+        throw ex;
+    }
 }
 
 unsigned int VisionSensor::convertImageType(const ImageType &imageType) const {

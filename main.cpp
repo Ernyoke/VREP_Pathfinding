@@ -12,6 +12,7 @@
 #include "VREP/Objects/Sensors/VisionSensor.h"
 #include "VREP/Objects/Robots/DR12_Robot.h"
 #include "Bridge.h"
+#include "VREP/Exceptions/ReturnCodesExceptions.h"
 
 int main(int argc, char **argv) {
     VRepApi vRepApi;
@@ -22,11 +23,9 @@ int main(int argc, char **argv) {
         vRepApi.connect("127.0.0.1", 19999, true, true, 2000);
         std::cout << "Connected!" << std::endl;
         VisionSensor *visionSensor = vRepApi.getVisionSensor("mapSensor");
-        visionSensor->initalize();
-        while (!visionSensor->initComplete());
         DR12_Robot *robot = vRepApi.getDR12Unit("dr12");
         VisionSensor::Resolution resolution = visionSensor->resolution();
-        Position robotPos = Bridge::convertToPosition(robot->getGlobalPosition(), resolution);
+        Position robotPos = Bridge::convertToPosition(robot->globalPosition(), resolution);
         std::cout << "DR12 pos: " << robotPos.X() << " " << robotPos.Y() << std::endl;
         std::cout << "Wheel diameter: " << robot->wheelDiameter() << std::endl;
         std::cout << "Distance between wheels: " << robot->wheelDistance() << std::endl;
@@ -49,10 +48,16 @@ int main(int argc, char **argv) {
         delete visionSensor;
         delete robot;
         vRepApi.disconnect();
-    } catch (ConnectionErrorException *ex) {
+    }
+    catch (ConnectionErrorException *ex) {
         std::cout << ex->what() << std::endl;
         delete ex;
-    } catch (NoPathException *ex) {
+    }
+    catch (NoPathException *ex) {
+        std::cout << ex->what() << std::endl;
+        delete ex;
+    }
+    catch (ReturnCodesExceptions *ex) {
         std::cout << ex->what() << std::endl;
         delete ex;
     }

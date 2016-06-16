@@ -6,7 +6,7 @@
 #include <tuple>
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
-#include "ConnectionErrorException.h"
+#include "Exceptions/ConnectionErrorException.h"
 #include "Objects/Sensor.h"
 #include "../PathFinding/Position.h"
 #include "Objects/Sensors/VisionSensor.h"
@@ -47,6 +47,7 @@ public:
 
 private:
     void wait(const int sec) const;
+
 };
 
 #endif // VREPAPI_H

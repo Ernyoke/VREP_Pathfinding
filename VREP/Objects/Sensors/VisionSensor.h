@@ -23,10 +23,6 @@ public:
 
     static VisionSensor *build(const ObjectBuilder &sensorBuilder);
 
-    virtual void initalize();
-
-    bool initComplete() const;
-
     cv::Mat image(const ImageType &imageType) const;
 
     Resolution resolution() const;
@@ -35,8 +31,6 @@ protected:
     VisionSensor(const ObjectBuilder &sensorBuilder);
 
 private:
-    bool isInitialized;
-
     unsigned int convertImageType(const ImageType &imageType) const;
 
 };

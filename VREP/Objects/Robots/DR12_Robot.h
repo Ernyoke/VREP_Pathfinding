@@ -25,9 +25,9 @@ struct DR12RobotBuilder : public RobotBuilder {
 
 class DR12_Robot : public Robot {
 public:
-    virtual ~DR12_Robot();
-
     static DR12_Robot *build(const DR12RobotBuilder &sensorBuilder);
+
+    virtual ~DR12_Robot();
 
     float wheelDiameter() const;
 
