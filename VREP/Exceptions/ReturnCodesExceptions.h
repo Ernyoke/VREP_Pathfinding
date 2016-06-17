@@ -7,9 +7,11 @@
 
 
 #include <map>
+#include <exception>
+
 #include <boost/numeric/ublas/vector.hpp>
 
-class ReturnCodesExceptions {
+class ReturnCodesExceptions : public std::exception {
 protected:
     int m_ReturnCode;
     static const std::map<int, std::string> errorMessager;

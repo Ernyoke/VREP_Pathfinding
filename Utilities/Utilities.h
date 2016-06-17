@@ -16,7 +16,7 @@ namespace Utilities {
     template <typename T>
     T distance(const std::tuple<T, T>& a, const std::tuple<T, T>& b) {
         T x = std::abs(std::get<0>(a) - std::get<0>(b));
-        T y = std::abs(std::get<0>(a) - std::get<0>(b));
+        T y = std::abs(std::get<1>(a) - std::get<1>(b));
         return std::sqrt(x * x + y * y);
     }
 

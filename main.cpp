@@ -13,6 +13,7 @@
 #include "VREP/Objects/Robots/DR12_Robot.h"
 #include "Bridge.h"
 #include "VREP/Exceptions/ReturnCodesExceptions.h"
+#include "Utilities/Utilities.h"
 
 int main(int argc, char **argv) {
     VRepApi vRepApi;
@@ -45,6 +46,7 @@ int main(int argc, char **argv) {
         robot->followPath(Bridge::convertToVREPPath(pathCoordList, resolution));
 //        auto ori = robot->orientation();
 //        std::cout << "Orientation: " << std::get<0>(ori) << " " << std::get<1>(ori) << " " << std::get<2>(ori) << std::endl;
+//        std::cout << "Orientation rad: " << Utilities::orientationXY(ori) << std::endl;
         delete visionSensor;
         delete robot;
         vRepApi.disconnect();

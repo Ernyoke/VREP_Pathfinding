@@ -2,8 +2,9 @@
 #define CONNECTIONERROREXCEPTION_H
 
 #include <string>
+#include <exception>
 
-class ConnectionErrorException {
+class ConnectionErrorException : public std::exception {
 
 protected:
     std::string m_message;

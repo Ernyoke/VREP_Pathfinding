@@ -13,6 +13,12 @@
       <sourceFolder url="file://$MODULE_DIR$/remoteApi/extApi.c" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/remoteApi/v_repLib.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/remoteApi/extApiPlatform.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ReturnCodesExceptions.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ConnectionErrorException.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ReturnCodesExceptions.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ConnectionErrorException.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/VRepApi.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/VREP/VRepApi.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Object.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensors/VisionSensor.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensors/VisionSensor.h" isTestSource="false" />
@@ -27,12 +33,6 @@
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robot.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Robot.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/VREP/Objects/Sensor.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/VRepApi.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/VRepApi.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ConnectionErrorException.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ConnectionErrorException.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ReturnCodesExceptions.h" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/VREP/Exceptions/ReturnCodesExceptions.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/NoPathException.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/OutOfBoundException.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/PathFinding/HistoricalPosition.h" isTestSource="false" />
