@@ -18,6 +18,11 @@ public:
     virtual ~Object();
 
     std::tuple<float, float, float> globalPosition() const;
+    void setGlobalPosition(std::tuple<float, float, float>& position);
+
+    static Object *build(const ObjectBuilder &objectBuilder);
+
+    Object* parent();
 
 protected:
     const simxInt m_ClientId;

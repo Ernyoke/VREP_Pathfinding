@@ -35,6 +35,8 @@ public:
 
     void followPath(const std::vector<std::tuple<float, float, float> > &path);
 
+    void followPathDummy(const std::vector<std::tuple<float, float, float> > &path);
+
     std::tuple<float, float, float> orientation() const;
 
     float relativeOrientationXY(const std::tuple<float, float> &point) const;

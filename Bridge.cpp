@@ -2,13 +2,13 @@
 
 Position Bridge::convertToPosition(const std::tuple<float, float, float> pos,
                                    const VisionSensor::Resolution &resolution) {
-    return Position{(std::get<0>(pos) + 2.5) * resolution.width / 5, (std::get<1>(pos) + 2.5) * resolution.height / 5};
+    return Position{(std::get<0>(pos) + 2.5f) * resolution.height / 5.0f, (std::get<1>(pos) + 2.5f) * resolution.width / 5.0f};
 }
 
 std::tuple<float, float, float> Bridge::convertToVREPCoordinate(const Position &pos,
                                                                 const VisionSensor::Resolution &resolution) {
-    float x = (pos.X() * 5.0f) / resolution.width - 2.5f;
-    float y = (pos.Y() * 5.0f) / resolution.height - 2.5f;
+    float x = (pos.X() * 5.0f) / resolution.height - 2.5f;
+    float y = (pos.Y() * 5.0f) / resolution.width - 2.5f;
     float z = 0;
     std::cout << x << " " << y << " " << z << " " << std::endl;
     return std::make_tuple(x, y, z);
@@ -30,14 +30,14 @@ void Bridge::coverObject(cv::Mat &ground, const Position &pos, const unsigned in
 boost::numeric::ublas::matrix<STATE> Bridge::createGroundMap(const cv::Mat &ground) {
     cv::Mat largerBorders;
     cv::Mat kernel = cv::Mat::ones(7, 7, CV_8UC3);
-    cv::dilate(ground, largerBorders, 255 * cv::getStructuringElement(cv::MORPH_RECT, cv::Size(20, 20)));
+    cv::dilate(ground, largerBorders, 255 * cv::getStructuringElement(cv::MORPH_RECT, cv::Size(80, 80)));
     cv::imshow("largerborders", largerBorders);
     cv::Size size = largerBorders.size();
     boost::numeric::ublas::matrix<STATE> groundMap;
     groundMap.resize(size.height, size.width);
     for (unsigned int i = 0; i < size.height; ++i) {
         for (unsigned int j = 0; j < size.width; ++j) {
-            if (largerBorders.at<uchar>(i, j) == 0) {
+            if (largerBorders.at<uchar>(j, i) == 0) {
                 groundMap(i, j) = EMPTY;
             } else {
                 groundMap(i, j) = WALL;
@@ -63,6 +63,6 @@ cv::Mat Bridge::createImgMap(const boost::numeric::ublas::matrix<STATE> &groundM
 
 void Bridge::drawPath(cv::Mat &ground, CoordinateList_sptr &pathCoordList) {
     for (auto it = pathCoordList->cbegin(); it != pathCoordList->cend(); ++it) {
-        ground.at<uchar>(it->X(), it->Y()) = 255;
+        ground.at<uchar>(it->Y(), it->X()) = 255;
     }
 }

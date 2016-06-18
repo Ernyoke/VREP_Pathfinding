@@ -60,17 +60,20 @@ float DR12_Robot::wheelDistance() const {
 
 void DR12_Robot::followPath(const std::vector<std::tuple<float, float, float> > &path) {
     float speed = 0.2;
-    float rotationSpeed = 0.8;
-    float d = 0.6;
+    float rotationSpeed = 0.4;
+    float d = wheelDistance();
     float speedRight = 0;
     float speedLeft = 0;
-    float r = wheelDiameter();
+    float r = wheelDiameter() / 2;
     float omagaRight = 0;
     float omagaLeft = 0;
     float orientation = 0;
 
+    float error = 0.1;
+    float step = 10;
+
     bool stop = false;
-    int i = 40;
+    int i = 50;
 
     while (!stop) {
         auto pathPoint = path.at(i);
@@ -83,18 +86,37 @@ void DR12_Robot::followPath(const std::vector<std::tuple<float, float, float> > 
         go(omagaRight, omagaLeft);
         float distance = Utilities::distance(std::make_tuple(std::get<0>(position), std::get<1>(position)),
                                              std::make_tuple(std::get<0>(pathPoint), std::get<1>(pathPoint)));
-        if (std::abs(distance) <= 0.007) {
-            i += 30;
+
+        if (std::abs(distance) <= error + error) {
+            i += 20;
+            if (step > 0.0f) {
+                step -= 1.0f;
+                std::cout << "Step: " << step << std::endl;
+            }
         }
 
         if (i >= path.size()) {
             stop = true;
         }
 
-        std::cout << "Distance: " << distance << std::endl;
-        std::cout << "Orientation: " << orientation << std::endl;
+//        std::cout << "Distance: " << distance << std::endl;
+//        std::cout << "Orientation: " << orientation << std::endl;
+//        std::cout << "My position: " << std::get<0>(position) << " " << std::get<1>(position) << std::endl;
+//        std::cout << "Path position: " << std::get<0>(pathPoint) << " " << std::get<1>(pathPoint) << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    }
+
+    this->stop();
+}
+
+void DR12_Robot::followPathDummy(const std::vector<std::tuple<float, float, float> > &path) {
+    Object *dummy = parent();
+    for (auto it : path) {
+        auto robotPosition = globalPosition();
+        auto dummyPosition = std::make_tuple(std::get<0>(it), std::get<1>(it), std::get<2>(robotPosition));
+        dummy->setGlobalPosition(dummyPosition);
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 }
 
@@ -149,16 +171,16 @@ float DR12_Robot::relativeOrientationXY(const std::tuple<float, float> &point) c
         float x = std::get<0>(point) - std::get<0>(myPosition);
         float y = std::get<1>(point) - std::get<1>(myPosition);
 
-        std::cout << "x: "  << x << " y: " << y << " x/y: " << x / y << std::endl;
-        std::cout << "atan: " << std::atan(x / y) << std::endl;
+        //std::cout << "x: "  << x << " y: " << y << " x/y: " << x / y << std::endl;
+        //std::cout << "atan: " << std::atan(x / y) << std::endl;
 
-        if (x >= 0 && y < 0) {
+        if (x > 0 && y < 0) {
             beta = std::atan(x / y);
         }
-        if (x >= 0 && y >= 0) {
+        if (x > 0 && y > 0) {
             beta = Utilities::PI - std::atan(x / y);
         }
-        if (x < 0 && y >= 0) {
+        if (x < 0 && y > 0) {
             beta = Utilities::PI + std::atan(x / y);
         }
         if (x < 0 && y < 0) {
@@ -166,9 +188,6 @@ float DR12_Robot::relativeOrientationXY(const std::tuple<float, float> &point) c
         }
 
         myBeta = Utilities::orientationXY(myOrientation);
-
-        std:: cout << "My orientation: " << myBeta << std::endl;
-        std:: cout << "Point orientation: " << beta << std::endl;
 
         return beta - myBeta;
     }

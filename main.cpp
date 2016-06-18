@@ -44,6 +44,7 @@ int main(int argc, char **argv) {
 //        cv::imshow("opencvtest", img);
 //        cv::waitKey(0);
         robot->followPath(Bridge::convertToVREPPath(pathCoordList, resolution));
+//        robot->followPathDummy(Bridge::convertToVREPPath(pathCoordList, resolution));
 //        auto ori = robot->orientation();
 //        std::cout << "Orientation: " << std::get<0>(ori) << " " << std::get<1>(ori) << " " << std::get<2>(ori) << std::endl;
 //        std::cout << "Orientation rad: " << Utilities::orientationXY(ori) << std::endl;

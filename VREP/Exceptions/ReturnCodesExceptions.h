@@ -25,6 +25,8 @@ public:
 
     static void handleReturnCode(const int code);
 
+    static void handleReturnCodeNoResponse(const int code);
+
     void addNote(const std::string& note);
 
 };

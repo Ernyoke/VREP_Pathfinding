@@ -21,6 +21,12 @@ void ReturnCodesExceptions::handleReturnCode(const int code) {
     }
 }
 
+void ReturnCodesExceptions::handleReturnCodeNoResponse(const int code) {
+    if (code != 0 && code != 1) {
+        throw new ReturnCodesExceptions(code);
+    }
+}
+
 ReturnCodesExceptions::ReturnCodesExceptions(const int returnCode) throw() : m_ReturnCode{returnCode} {
 }
 
