@@ -11,7 +11,7 @@
 #include "Bridge.h"
 #include "VREP/Exceptions/ReturnCodesExceptions.h"
 
-#define DEBUG true
+#define DEBUG false
 
 int main(int argc, char **argv) {
     VRepApi vRepApi;
