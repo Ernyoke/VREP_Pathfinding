@@ -27,17 +27,17 @@ void Bridge::coverObject(cv::Mat &ground, const Position &pos, const unsigned in
     cv::circle(ground, cv::Point(pos.X(), pos.Y()), radius, color, -1);
 }
 
+void Bridge::enlargeBorder(cv::Mat& image, const unsigned int kernel) {
+    cv::dilate(image, image, 255 * cv::getStructuringElement(cv::MORPH_RECT, cv::Size(kernel, kernel)));
+}
+
 boost::numeric::ublas::matrix<STATE> Bridge::createGroundMap(const cv::Mat &ground) {
-    cv::Mat largerBorders;
-    cv::Mat kernel = cv::Mat::ones(7, 7, CV_8UC3);
-    cv::dilate(ground, largerBorders, 255 * cv::getStructuringElement(cv::MORPH_RECT, cv::Size(80, 80)));
-    cv::imshow("largerborders", largerBorders);
-    cv::Size size = largerBorders.size();
+    cv::Size size = ground.size();
     boost::numeric::ublas::matrix<STATE> groundMap;
     groundMap.resize(size.height, size.width);
     for (unsigned int i = 0; i < size.height; ++i) {
         for (unsigned int j = 0; j < size.width; ++j) {
-            if (largerBorders.at<uchar>(j, i) == 0) {
+            if (ground.at<uchar>(j, i) == 0) {
                 groundMap(i, j) = EMPTY;
             } else {
                 groundMap(i, j) = WALL;

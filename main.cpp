@@ -5,15 +5,13 @@
 #include <opencv2/highgui/highgui.hpp>
 #include "memory"
 #include "PathFinding/Playground.h"
-#include "PathFinding/Position.h"
 #include "PathFinding/A_Star/A_StarPath.h"
 #include "PathFinding/NoPathException.h"
 #include "VREP/VRepApi.h"
-#include "VREP/Objects/Sensors/VisionSensor.h"
-#include "VREP/Objects/Robots/DR12_Robot.h"
 #include "Bridge.h"
 #include "VREP/Exceptions/ReturnCodesExceptions.h"
-#include "Utilities/Utilities.h"
+
+#define DEBUG true
 
 int main(int argc, char **argv) {
     VRepApi vRepApi;
@@ -23,31 +21,50 @@ int main(int argc, char **argv) {
     try {
         vRepApi.connect("127.0.0.1", 19999, true, true, 2000);
         std::cout << "Connected!" << std::endl;
+
         VisionSensor *visionSensor = vRepApi.getVisionSensor("mapSensor");
         DR12_Robot *robot = vRepApi.getDR12Unit("dr12");
+
         VisionSensor::Resolution resolution = visionSensor->resolution();
         Position robotPos = Bridge::convertToPosition(robot->globalPosition(), resolution);
-        std::cout << "DR12 pos: " << robotPos.X() << " " << robotPos.Y() << std::endl;
-        std::cout << "Wheel diameter: " << robot->wheelDiameter() << std::endl;
-        std::cout << "Distance between wheels: " << robot->wheelDistance() << std::endl;
+
+        //original image from vision sensor
         cv::Mat img = visionSensor->image(VisionSensor::ImageType::GRAYSCALE);
-        Bridge::coverObject(img, robotPos, 15);
-        auto playGround = std::shared_ptr<Playground>(new Playground(Bridge::createGroundMap(img)));
+
+        //cover our robot from the image and create a matrix for A_Star algorithm
+        cv::Mat reworked {img.clone()};
+        Bridge::coverObject(reworked, robotPos, 15);
+        Bridge::enlargeBorder(reworked, 60);
+
+        auto playGround = std::shared_ptr<Playground>(new Playground(Bridge::createGroundMap(reworked)));
         A_StarPath path(playGround);
+
+        //the start point is the robot's current position
         path.setStartPoint(robotPos);
+
+        //set the endpoint
         path.setEndPoint(Position(440, 440));
+
+        //calculate path
         CoordinateList_sptr pathCoordList = path.path();
-        //std::ofstream outFile;
-        //outFile.open("output.txt");
-        //playGround->writeToFile(outFile);
-        Bridge::drawPath(img, pathCoordList);
-//        cv::imshow("opencvtest", img);
-//        cv::waitKey(0);
+
+        //draw path on the image
+        cv::Mat finalWithPath {img.clone()};
+        Bridge::drawPath(finalWithPath, pathCoordList);
+
+        //follow the path with a controller algorithm
         robot->followPath(Bridge::convertToVREPPath(pathCoordList, resolution));
 //        robot->followPathDummy(Bridge::convertToVREPPath(pathCoordList, resolution));
-//        auto ori = robot->orientation();
-//        std::cout << "Orientation: " << std::get<0>(ori) << " " << std::get<1>(ori) << " " << std::get<2>(ori) << std::endl;
-//        std::cout << "Orientation rad: " << Utilities::orientationXY(ori) << std::endl;
+
+        if (DEBUG) {
+            cv::imshow("original", img);
+            cv::waitKey(0);
+            cv::imshow("dilated", reworked);
+            cv::waitKey(0);
+            cv::imshow("with path", finalWithPath);
+            cv::waitKey(0);
+        }
+
         delete visionSensor;
         delete robot;
         vRepApi.disconnect();

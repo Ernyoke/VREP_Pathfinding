@@ -69,8 +69,7 @@ void DR12_Robot::followPath(const std::vector<std::tuple<float, float, float> > 
     float omagaLeft = 0;
     float orientation = 0;
 
-    float error = 0.1;
-    float step = 10;
+    float error = 0.2;
 
     bool stop = false;
     int i = 50;
@@ -88,11 +87,7 @@ void DR12_Robot::followPath(const std::vector<std::tuple<float, float, float> > 
                                              std::make_tuple(std::get<0>(pathPoint), std::get<1>(pathPoint)));
 
         if (std::abs(distance) <= error + error) {
-            i += 20;
-            if (step > 0.0f) {
-                step -= 1.0f;
-                std::cout << "Step: " << step << std::endl;
-            }
+            i += 30;
         }
 
         if (i >= path.size()) {

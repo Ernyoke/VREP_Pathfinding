@@ -29,6 +29,8 @@ namespace Bridge {
                      const unsigned int radius,
                      const cv::Scalar &color = cv::Scalar(0, 0, 0));
 
+    void enlargeBorder(cv::Mat& image, const unsigned int kernel);
+
     boost::numeric::ublas::matrix<STATE> createGroundMap(const cv::Mat &ground);
 
     cv::Mat createImgMap(const boost::numeric::ublas::matrix<STATE> &groundMap);
